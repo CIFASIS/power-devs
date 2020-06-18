@@ -1,0 +1,32 @@
+OPTFLAGS = 
+CXXFLAGS = -g -Wall $(OPTFLAGS) -D__WINDOWS__ -D_OMC_QSS -D_OMC_OMPD
+ATOMICS = ../atomics
+SRCENGINE = ../engine
+BUILD = ../build
+BUILDOBJ = ../build/objs
+OUTPUT = ../output
+INCLUDES_OMC = -I$(OPENMODELICAHOME)/include/omc
+INCLUDES = -I$(SRCENGINE) -I$(ATOMICS) -I$(BUILD) -L$(BUILDOBJ) $(INCLUDES_OMC)
+LIBS = -lsimpd -L$(OPENMODELICAHOME)/lib/omc -lsim_ompd -lsendData -lQtNetwork-mingw -lQtCore-mingw -lQtGui-mingw -lws2_32 -lexpat -lregex -luuid -lole32 -lc_runtime -lf2c -linteractive -lws2_32 
+all : $(BUILDOBJ)/libsimpd.a $(BUILD)/model 
+	mv -f $(BUILD)/model $(OUTPUT)/model
+clean:
+	rm -f $(BUILDOBJ)/*.o $(BUILD)/model
+$(BUILDOBJ)/connection.o: $(SRCENGINE)/connection.cpp $(SRCENGINE)/connection.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRCENGINE)/connection.cpp -o $(BUILDOBJ)/connection.o
+$(BUILDOBJ)/coupling.o: $(SRCENGINE)/coupling.cpp $(SRCENGINE)/coupling.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRCENGINE)/coupling.cpp -o $(BUILDOBJ)/coupling.o
+$(BUILDOBJ)/event.o: $(SRCENGINE)/event.cpp $(SRCENGINE)/event.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRCENGINE)/event.cpp -o $(BUILDOBJ)/event.o
+$(BUILDOBJ)/root_coupling.o: $(SRCENGINE)/root_coupling.cpp $(SRCENGINE)/root_coupling.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRCENGINE)/root_coupling.cpp -o $(BUILDOBJ)/root_coupling.o
+$(BUILDOBJ)/root_simulator.o: $(SRCENGINE)/root_simulator.cpp $(SRCENGINE)/root_simulator.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c  $(SRCENGINE)/root_simulator.cpp -o $(BUILDOBJ)/root_simulator.o
+$(BUILDOBJ)/simulator.o: $(SRCENGINE)/simulator.cpp $(SRCENGINE)/simulator.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c  $(SRCENGINE)/simulator.cpp -o $(BUILDOBJ)/simulator.o
+$(BUILDOBJ)/pdevslib.o:	$(SRCENGINE)/pdevslib.h	$(SRCENGINE)/pdevslib.cpp $(SRCENGINE)/pdevslib.linux.cpp $(SRCENGINE)/pdevslib.win.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c  $(SRCENGINE)/pdevslib.cpp -o $(BUILDOBJ)/pdevslib.o
+$(BUILDOBJ)/libsimpd.a:	$(BUILDOBJ)/connection.o $(BUILDOBJ)/coupling.o $(BUILDOBJ)/event.o $(BUILDOBJ)/root_coupling.o $(BUILDOBJ)/root_simulator.o $(BUILDOBJ)/simulator.o $(BUILDOBJ)/pdevslib.o
+	$(AR) rvs $(BUILDOBJ)/libsimpd.a $(BUILDOBJ)/connection.o $(BUILDOBJ)/coupling.o $(BUILDOBJ)/event.o $(BUILDOBJ)/root_coupling.o $(BUILDOBJ)/root_simulator.o $(BUILDOBJ)/simulator.o $(BUILDOBJ)/pdevslib.o
+include $(BUILD)/Makefile.include
+

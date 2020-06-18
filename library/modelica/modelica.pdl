@@ -1,0 +1,102 @@
+Coupled
+    {
+    Type = Root
+    Name = Modelica
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 0; 0
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Integrator
+            Ports = 2 ; 1
+            Path = modelica/modelica_qss_integrator.h
+            Description = Modelica QSS Integrator
+            Graphic
+                {
+                Position = -5655 ; -2985
+                Dimension = 510 ; 570
+                Direction = Right
+                Color = 15
+                Icon = %continuous%integrator.bmp
+                }
+            Parameters
+                {
+                Index = Val; 1 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Zero Cross Detector
+            Ports = 2 ; 1
+            Path = modelica/modelica_qss_cross_detect.h
+            Description = Modelica Zero Cross detector
+            Graphic
+                {
+                Position = -8055 ; -1785
+                Dimension = 510 ; 570
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%crossdetect.bmp
+                }
+            Parameters
+                {
+                Index = Val; 0 ; 
+                }
+            }
+        Atomic
+            {
+            Name = When clause
+            Ports = 1 ; 1
+            Path = modelica/modelica_when_discrete.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -6300 ; -1650
+                Dimension = 1050 ; 465
+                Direction = Right
+                Color = 15
+                Icon = %modelica%when.png
+                }
+            Parameters
+                {
+                Inputs = Str; %Inputs ; 
+                Outputs = Str; %Outputs ; 
+                Index = Val; 0 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Static fun
+            Ports = 2 ; 1
+            Path = modelica/modelica_static_block.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -8790 ; -3105
+                Dimension = 630 ; 660
+                Direction = Right
+                Color = 15
+                Icon = %continuous%nlfunction.bmp
+                }
+            Parameters
+                {
+                Inputs = Str; %Inputs ; 
+                Outputs = Str; %Outputs ; 
+                Index = Val; 1 ; 
+                }
+            }
+        }
+    }

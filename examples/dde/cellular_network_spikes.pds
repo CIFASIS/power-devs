@@ -1,0 +1,175 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = sources\sinegen_sci.h
+    Parameters = "1","2/(2*%pi)","0","20","QSS2"
+   }
+  Simulator
+   {
+    Path = sources\sinegen_sci.h
+    Parameters = "1","3/(2*%pi)","0","20","QSS2"
+   }
+  Simulator
+   {
+    Path = sources\sinegen_sci.h
+    Parameters = "1","1/(2*%pi)","0","20","QSS2"
+   }
+  Simulator
+   {
+    Path = sources\sinegen_sci.h
+    Parameters = "1","2/(2*%pi)","0.5*%pi","20","QSS2"
+   }
+  Simulator
+   {
+    Path = sources\sinegen_sci.h
+    Parameters = "1","1/(2*%pi)","0.5*%pi","20","QSS2"
+   }
+  Simulator
+   {
+    Path = sources\sinegen_sci.h
+    Parameters = "1","3/(2*%pi)","0.5*%pi","20","QSS2"
+   }
+  Simulator
+   {
+    Path = qss/res_qss_integrator.h
+    Parameters = "QSS3","1e-6","1e-3","0.5"
+   }
+  Simulator
+   {
+    Path = qss/res_qss_integrator.h
+    Parameters = "QSS3","1e-6","1e-3","-0.5"
+   }
+  Simulator
+   {
+    Path = qss/qss_nlfunction.h
+    Parameters = "(abs(u0+1)-abs(u0-1))/2",1.000000e+00
+   }
+  Simulator
+   {
+    Path = qss\dqssv2o3.h
+    Parameters = "1","-0.5"
+   }
+  Simulator
+   {
+    Path = qss/qss_gain.h
+    Parameters = "1.3"
+   }
+  Simulator
+   {
+    Path = qss/samplehold.h
+    Parameters = "2","0"
+   }
+  Simulator
+   {
+    Path = qss/qss_wsum.h
+    Parameters = "0.5","0.5","0","0","0","0","0","0",2.000000e+00
+   }
+  Simulator
+   {
+    Path = sources\constant_sci.h
+    Parameters = "1"
+   }
+  Simulator
+   {
+    Path = qss/qss_wsum.h
+    Parameters = "0.5","0.5","0","0","0","0","0","0",2.000000e+00
+   }
+  Simulator
+   {
+    Path = qss\dqssv2o3.h
+    Parameters = "1","0.5"
+   }
+  Simulator
+   {
+    Path = qss/qss_nlfunction.h
+    Parameters = "(abs(u0+1)-abs(u0-1))/2",1.000000e+00
+   }
+  Simulator
+   {
+    Path = qss/qss_nlfunction.h
+    Parameters = "(abs(u0+1)-abs(u0-1))/2",1.000000e+00
+   }
+  Simulator
+   {
+    Path = qss/qss_nlfunction.h
+    Parameters = "(abs(u0+1)-abs(u0-1))/2",1.000000e+00
+   }
+  Simulator
+   {
+    Path = qss/qss_nlfunction.h
+    Parameters = "-6*u0+u1*u2+u3*u4+u5*u6+u7*u8+4*u7",9.000000e+00
+   }
+  Simulator
+   {
+    Path = qss/qss_nlfunction.h
+    Parameters = "-7*u0+u1/3*u2+u3/2*u4+u1*u5+u3*u6+2*u1",7.000000e+00
+   }
+  Simulator
+   {
+    Path = qss/samplehold.h
+    Parameters = "2","0"
+   }
+  Simulator
+   {
+    Path = qss/qss_gain.h
+    Parameters = "1.2"
+   }
+  Simulator
+   {
+    Path = sinks/gnuplot.h
+    Parameters = 2.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'x1'","with lines title 'x2'","","",""
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (12,0);(9,0)
+    (14,0);(15,0)
+    (19,0);(7,0)
+    (20,0);(6,0)
+    (11,0);(10,0)
+    (10,0);(6,1)
+    (22,0);(7,1)
+    (21,0);(22,0)
+    (0,0);(19,1)
+    (5,0);(19,3)
+    (8,0);(19,6)
+    (1,0);(19,5)
+    (16,0);(19,8)
+    (3,0);(20,3)
+    (13,0);(14,0)
+    (13,0);(12,1)
+    (2,0);(19,7)
+    (2,0);(14,1)
+    (4,0);(20,1)
+    (4,0);(12,0)
+    (17,0);(20,2)
+    (17,0);(19,2)
+    (18,0);(19,4)
+    (18,0);(20,4)
+    (9,0);(20,5)
+    (9,0);(8,0)
+    (15,0);(20,6)
+    (15,0);(16,0)
+    (7,0);(23,0)
+    (7,0);(21,0)
+    (7,0);(9,1)
+    (7,0);(17,0)
+    (7,0);(19,0)
+    (7,0);(9,1)
+    (7,0);(17,0)
+    (7,0);(19,0)
+    (6,0);(23,1)
+    (6,0);(11,0)
+    (6,0);(15,1)
+    (6,0);(18,0)
+    (6,0);(20,0)
+    (6,0);(18,0)
+    (6,0);(20,0)
+   }
+ }

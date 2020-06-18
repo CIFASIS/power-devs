@@ -1,0 +1,442 @@
+Coupled
+    {
+    Type = Root
+    Name = lcline
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 0; 0
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Scilab Command 0
+            Ports = 1 ; 0
+            Path = Hybrid\runscilabjob.h
+            Description = Runs Scilab commands at Init, Exit and when receive events.
+            Graphic
+                {
+                Position = -13605 ; -8055
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%scilab.ico
+                }
+            Parameters
+                {
+                Run at Init = Str; C=1,L=1,N=50 ; Scilab Job at Init
+                Run at External = Str;  ; Scilab Job when receive event
+                Run at Exit = Str;  ; Scilab Job at Exit
+                }
+            }
+        Atomic
+            {
+            Name = Vector QSS_Int 0
+            Ports = 1 ; 1
+            Path = vector\qss_integrator_vec.h
+            Description = Quantized Integrator (QSS methods) with logartithmic quantization
+            Graphic
+                {
+                Position = -3255 ; -5205
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%integrator.svg
+                }
+            Parameters
+                {
+                Method = Lst; 3%QSS%QSS2%QSS3%QSS4%BQSS%CQSS%LIQSS%LIQSS2%LIQSS3% ; 
+                dqmin = Str; 1e-6 ; minimum quantum (Scilab)
+                dqrel = Str; 1e-3 ; relative quantum (0 : uniform) (Scilab)
+                x0 = Str; 0 ; Initial state (Scilab)
+                Size = Str; N ; Vector Dimension
+                }
+            }
+        Atomic
+            {
+            Name = Vector QSS_Int 1
+            Ports = 1 ; 1
+            Path = vector\qss_integrator_vec.h
+            Description = Quantized Integrator (QSS methods) with logartithmic quantization
+            Graphic
+                {
+                Position = -7455 ; -5205
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%integrator.svg
+                }
+            Parameters
+                {
+                Method = Lst; 3%QSS%QSS2%QSS3%QSS4%BQSS%CQSS%LIQSS%LIQSS2%LIQSS3% ; 
+                dqmin = Str; 1e-6 ; minimum quantum (Scilab)
+                dqrel = Str; 1e-3 ; relative quantum (0 : uniform) (Scilab)
+                x0 = Str; 0 ; Initial state (Scilab)
+                Size = Str; N ; Vector Dimension
+                }
+            }
+        Atomic
+            {
+            Name = Vector WSum 0
+            Ports = 2 ; 1
+            Path = vector\qss_sum_vec.h
+            Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+            Graphic
+                {
+                Position = -4530 ; -5205
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%sum.svg
+                }
+            Parameters
+                {
+                K[0] = Str; 1/C ; 
+                K[1] = Str; -1/C ; 
+                K[2] = Str; 0 ; 
+                K[3] = Str; 0 ; 
+                K[4] = Str; 0 ; 
+                K[5] = Str; 0 ; 
+                K[6] = Str; 0 ; 
+                K[7] = Str; 0 ; 
+                Inputs = Str; %Inputs ; 
+                Size = Str; N ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Index Shift 0
+            Ports = 1 ; 1
+            Path = vector\index_shift.h
+            Description = Vector Index Shift. Computes y(index)=u(index+shift)
+            Graphic
+                {
+                Position = -5805 ; -3780
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%indexshift.svg
+                }
+            Parameters
+                {
+                shift = Str; 1 ; Signal Index Shift
+                Size = Str; N ; 
+                }
+            }
+        Atomic
+            {
+            Name = Vector WSum 1
+            Ports = 3 ; 1
+            Path = vector\qss_sum_vec.h
+            Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+            Graphic
+                {
+                Position = -8955 ; -5205
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%sum.svg
+                }
+            Parameters
+                {
+                K[0] = Str; 1/L ; 
+                K[1] = Str; 1/L ; 
+                K[2] = Str; -1/L ; 
+                K[3] = Str; 0 ; 
+                K[4] = Str; 0 ; 
+                K[5] = Str; 0 ; 
+                K[6] = Str; 0 ; 
+                K[7] = Str; 0 ; 
+                Inputs = Str; %Inputs ; 
+                Size = Str; N ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Index Shift 1
+            Ports = 1 ; 1
+            Path = vector\index_shift.h
+            Description = Vector Index Shift. Computes y(index)=u(index+shift)
+            Graphic
+                {
+                Position = -5805 ; -1605
+                Dimension = 675 ; 675
+                Direction = Left
+                Color = 15
+                Icon = %vectors%indexshift.svg
+                }
+            Parameters
+                {
+                shift = Str; -1 ; Signal Index Shift
+                Size = Str; N ; 
+                }
+            }
+        Atomic
+            {
+            Name = Scalar_to Vector 0
+            Ports = 1 ; 1
+            Path = vector\scalar2vec.h
+            Description = Scalar to Vector Signal. Index -1 propagates the input to all outputs.
+            Graphic
+                {
+                Position = -11055 ; -5580
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%scalar2vec.svg
+                }
+            Parameters
+                {
+                Index = Str; 0 ; Signal Index
+                Size = Str; N ; 
+                }
+            }
+        Atomic
+            {
+            Name = Pulse 0
+            Ports = 0 ; 1
+            Path = sources\pulse_sci.h
+            Description = Pulse generator
+            Graphic
+                {
+                Position = -12855 ; -5580
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%pulse.svg
+                }
+            Parameters
+                {
+                Base Value = Str; 0 ; Base Value (Scilab expression)
+                Amplitude = Str; 1 ; Pulse Amplitude (Scilab expression)
+                Initial Time = Str; 0 ; Initial Step Time (Scilab expression)
+                Final Time = Str; 1 ; Final Pulse Time (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = GnuPlot 0
+            Ports = 2 ; 0
+            Path = sinks\gnuplot.h
+            Description = Plot input signal using GnuPlot
+            Graphic
+                {
+                Position = 570 ; -4530
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sinks%gnuplot.svg
+                }
+            Parameters
+                {
+                Inputs = Str; %Inputs ; Number of inputs
+                Format = Str; set xrange [0:%tf] @ set grid @ set title 'Plot' ; General Formatting (use @ as line break)
+                Format1 = Str; with lines title 'Voltage u1' ; Formatting options for input 1
+                Format2 = Str; with lines title 'Voltage uN' ; Formatting options for input 2
+                Format3 = Str;  ; Formatting options for input 3
+                Format4 = Str;  ; Formatting options for input 4
+                Format5 = Str;  ; Formatting options for input 5
+                }
+            }
+        Atomic
+            {
+            Name = Vector_to Scalar 0
+            Ports = 1 ; 1
+            Path = vector\vec2scalar.h
+            Description = Vector to scalar signal
+            Graphic
+                {
+                Position = -1155 ; -5655
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vec2scalar.svg
+                }
+            Parameters
+                {
+                Index = Str; 0 ; Signal Index
+                Size = Str; N ; 
+                }
+            }
+        Atomic
+            {
+            Name = Vector_to Scalar 1
+            Ports = 1 ; 1
+            Path = vector\vec2scalar.h
+            Description = Vector to scalar signal
+            Graphic
+                {
+                Position = -1080 ; -3930
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vec2scalar.svg
+                }
+            Parameters
+                {
+                Index = Str; N-1 ; Signal Index
+                Size = Str; N ; 
+                }
+            }
+        Point
+            {
+            ConectedLines = 2 ; 3 ; 4
+            ConectedExtrems = Org ; Org ; Org
+            Position = -6510 ; -4890
+            }
+        Point
+            {
+            ConectedLines = 7 ; 8 ; 9
+            ConectedExtrems = Org ; Org ; Org
+            Position = -2010 ; -2190
+            }
+        Point
+            {
+            ConectedLines = 13 ; 14 ; 16
+            ConectedExtrems = Org ; Org ; Org
+            Position = -2010 ; -4800
+            }
+        Point
+            {
+            ConectedLines = 9 ; 15 ; 16
+            ConectedExtrems = Org ; Org ; Org
+            Position = -2010 ; -3600
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; 0
+            Sink = Cmp ;  2 ;  1 ; -1
+            PointX = -3750 ; -3750 ; -3390
+            PointY = -4875 ; -4875 ; -4875
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; 0
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -6675 ; -6510 ; -6510
+            PointY = -4875 ; -4875 ; -4890
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; -1
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = -5940 ; -6510 ; -6510
+            PointY = -3450 ; -3450 ; -4890
+            }
+        Line
+            {
+            Source = Pnt ;  1 ; -1 ; 0
+            Sink = Cmp ;  4 ;  1 ; -1
+            PointX = -6510 ; -4665 ; -4665
+            PointY = -4890 ; -4890 ; -5025
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; 0
+            Sink = Cmp ;  4 ;  2 ; -1
+            PointX = -5025 ; -5085 ; -5085 ; -4665
+            PointY = -3450 ; -3450 ; -4725 ; -4725
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  1 ; 0
+            Sink = Cmp ;  3 ;  1 ; -1
+            PointX = -8175 ; -8175 ; -7590
+            PointY = -4875 ; -4875 ; -4875
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  3 ; -1
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -9090 ; -9435 ; -9435 ; -2010
+            PointY = -4650 ; -4650 ; -2190 ; -2190
+            }
+        Line
+            {
+            Source = Cmp ;  7 ;  1 ; -1
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = -5010 ; -2010 ; -2010
+            PointY = -1275 ; -1275 ; -2190
+            }
+        Line
+            {
+            Source = Pnt ;  2 ; -1 ; 0
+            Sink = Pnt ;  4 ; -1 ; 0
+            PointX = -2010 ; -2010 ; -2010
+            PointY = -2190 ; -2190 ; -3600
+            }
+        Line
+            {
+            Source = Cmp ;  7 ;  1 ; 0
+            Sink = Cmp ;  6 ;  2 ; -1
+            PointX = -5925 ; -9735 ; -9735 ; -9090
+            PointY = -1275 ; -1275 ; -4875 ; -4875
+            }
+        Line
+            {
+            Source = Cmp ;  8 ;  1 ; 0
+            Sink = Cmp ;  6 ;  1 ; -1
+            PointX = -10275 ; -9750 ; -9750 ; -9090
+            PointY = -5250 ; -5250 ; -5025 ; -5025
+            }
+        Line
+            {
+            Source = Cmp ;  9 ;  1 ; 0
+            Sink = Cmp ;  8 ;  1 ; -1
+            PointX = -12075 ; -12075 ; -11190
+            PointY = -5250 ; -5250 ; -5250
+            }
+        Line
+            {
+            Source = Cmp ;  11 ;  1 ; -1
+            Sink = Pnt ;  3 ; -1 ; 0
+            PointX = -1290 ; -2010 ; -2010
+            PointY = -5325 ; -5325 ; -4800
+            }
+        Line
+            {
+            Source = Pnt ;  3 ; -1 ; 0
+            Sink = Cmp ;  2 ;  1 ; 0
+            PointX = -2010 ; -2010 ; -2475
+            PointY = -4800 ; -4875 ; -4875
+            }
+        Line
+            {
+            Source = Cmp ;  12 ;  1 ; -1
+            Sink = Pnt ;  4 ; -1 ; 0
+            PointX = -1215 ; -1215 ; -2010
+            PointY = -3600 ; -3600 ; -3600
+            }
+        Line
+            {
+            Source = Pnt ;  4 ; -1 ; 0
+            Sink = Pnt ;  3 ; -1 ; 0
+            PointX = -2010 ; -2010 ; -2010
+            PointY = -3600 ; -4800 ; -4800
+            }
+        Line
+            {
+            Source = Cmp ;  11 ;  1 ; 0
+            Sink = Cmp ;  10 ;  1 ; -1
+            PointX = -375 ; 225 ; 225 ; 435
+            PointY = -5325 ; -5325 ; -4350 ; -4350
+            }
+        Line
+            {
+            Source = Cmp ;  10 ;  2 ; -1
+            Sink = Cmp ;  12 ;  1 ; 0
+            PointX = 435 ; -300 ; -300
+            PointY = -4050 ; -4050 ; -3600
+            }
+        }
+    }

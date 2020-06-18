@@ -1,0 +1,203 @@
+Coupled
+    {
+    Type = Root
+    Name = Hybrid
+    Ports = 0; 0
+    Description = QSS approximation of hybrid functions
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 555; 555
+        Direction = Right
+        Color = 15
+        Icon = %hybrid%crossdetector.svg
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Sample and Hold
+            Ports = 1 ; 1
+            Path = qss/samplehold.h
+            Description = Sample and hold
+            Graphic
+                {
+                Position = -555 ; 345
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%samphold.svg
+                }
+            Parameters
+                {
+                T = Str; 1 ; Sampling period (Scilab expression)
+                phi = Str; 0 ; Delay (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Cross detect
+            Ports = 1 ; 1
+            Path = qss/cross_detect.h
+            Description = Produces events when u=level. (QSS1 to 4)
+            Graphic
+                {
+                Position = 720 ; 345
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%crossdetector.svg
+                }
+            Parameters
+                {
+                level = Str; 0 ; Crossing level (Scilab expression)
+                output = Str; 1 ; Output event value (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Reset Qss_Integ
+            Ports = 2 ; 1
+            Path = qss/res_qss_integrator.h
+            Description = Quantized Integrator (QSS methods) with logartithmic quantization and reset port
+            Graphic
+                {
+                Position = 1995 ; 345
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%resintegrator.svg
+                }
+            Parameters
+                {
+                Method = Lst; 3%QSS%QSS2%QSS3%QSS4%BQSS%CQSS%LIQSS%LIQSS2%LIQSS3% ; 
+                dqmin = Str; 1e-6 ; minimum quantum (Scilab)
+                dqrel = Str; 1e-3 ; relative quantum (0 : uniform) (Scilab)
+                x0 = Str; 0 ; Initial state (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Switch
+            Ports = 3 ; 1
+            Path = qss/qss_switch.h
+            Description = If u1>level then y=u0. Otherwise y=u2
+            Graphic
+                {
+                Position = 3420 ; 225
+                Dimension = 675 ; 900
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%switch.svg
+                }
+            Parameters
+                {
+                level = Str; 0 ; Switching level (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Commanded Sampler
+            Ports = 2 ; 1
+            Path = qss/command_sampler.h
+            Description = Samples and holds u0 when receives events in u1. Works with polynomials up to 5th order.
+            Graphic
+                {
+                Position = 4770 ; 270
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%comandedsampler.svg
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = Comparator
+            Ports = 2 ; 1
+            Path = qss/compare.h
+            Description = The output is yu when u0>u1. Otherwise, the output is yl.
+            Graphic
+                {
+                Position = 6495 ; 495
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%comparator.svg
+                }
+            Parameters
+                {
+                yl = Str; -1 ; Low level (Scilab expression)
+                yu = Str; 1 ; Upper level (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Hysteresis
+            Ports = 1 ; 1
+            Path = qss/hysteretic.h
+            Description = Hysteretic function.
+            Graphic
+                {
+                Position = -105 ; 2220
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%hysteresis.svg
+                }
+            Parameters
+                {
+                xl = Str; -1 ; Low input level (Scilab expression).
+                xu = Str; 1 ; High input level  (Scilab expression)
+                yl = Str; -1 ; Low output value  (Scilab expression).
+                yu = Str; 1 ; High output  (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Saturation
+            Ports = 1 ; 1
+            Path = qss/qss_saturation.h
+            Description = Saturation
+            Graphic
+                {
+                Position = 1545 ; 2145
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%saturation.svg
+                }
+            Parameters
+                {
+                xl = Str; -1 ; Lower saturation limit (Scilab expression)
+                xu = Str; 1 ; Upper saturation level (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Quantizer
+            Ports = 1 ; 1
+            Path = qss/qss_quantizer.h
+            Description = Quantizer
+            Graphic
+                {
+                Position = 3195 ; 2070
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %hybrid%quantizer.svg
+                }
+            Parameters
+                {
+                dQ = Str; 0.1 ; Quantization size (Scilab expression)
+                Hysteresis = Lst; 1%No%Yes% ; Selects if the quantizer has hysteresis or not.
+                }
+            }
+        }
+    }

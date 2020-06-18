@@ -1,0 +1,287 @@
+Coupled
+    {
+    Type = Root
+    Name = Continuous
+    Ports = 0; 0
+    Description = QSS approximation of continuous systems
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 675; 675
+        Direction = Right
+        Color = 15
+        Icon = %continuous%integrator.svg
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = QSS Integrator
+            Ports = 1 ; 1
+            Path = qss/qss_integrator.h
+            Description = Quantized Integrator (QSS methods) with logartithmic quantization
+            Graphic
+                {
+                Position = 1845 ; 120
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%integrator.svg
+                }
+            Parameters
+                {
+                Method = Lst; 3%QSS%QSS2%QSS3%QSS4%BQSS%CQSS%LIQSS%LIQSS2%LIQSS3% ; 
+                dqmin = Str; 1e-6 ; minimum quantum (Scilab)
+                dqrel = Str; 1e-3 ; relative quantum (0 : uniform) (Scilab)
+                x0 = Str; 0 ; Initial state (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = WSum
+            Ports = 2 ; 1
+            Path = qss/qss_wsum.h
+            Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+            Graphic
+                {
+                Position = 3045 ; 165
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = %continuous%sum.svg
+                }
+            Parameters
+                {
+                K[0] = Str; 1 ; 
+                K[1] = Str; 1 ; 
+                K[2] = Str; 0 ; 
+                K[3] = Str; 0 ; 
+                K[4] = Str; 0 ; 
+                K[5] = Str; 0 ; 
+                K[6] = Str; 0 ; 
+                K[7] = Str; 0 ; 
+                Inputs = Str; %Inputs ; 
+                }
+            }
+        Atomic
+            {
+            Name = NLFunction
+            Ports = 1 ; 1
+            Path = qss/qss_nlfunction.h
+            Description = Nonlinear function. (QSS1 to 4)
+            Graphic
+                {
+                Position = 4320 ; 240
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = %continuous%nl_function.svg
+                }
+            Parameters
+                {
+                Expression = Str; u0^2+sin(u0) ; Expression in terms of u0,u1,....,u9
+                Inputs = Str; %Inputs ; 
+                }
+            }
+        Atomic
+            {
+            Name = Gain
+            Ports = 1 ; 1
+            Path = qss/qss_gain.h
+            Description = Scalar gain: y = K * u (QSS1 to 4)
+            Graphic
+                {
+                Position = 645 ; 120
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%constant.svg
+                }
+            Parameters
+                {
+                K = Str; 1 ; Gain (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Multiplier
+            Ports = 2 ; 1
+            Path = qss/qss_multiplier.h
+            Description = Multiplier. (QSS1 to 4)
+            Graphic
+                {
+                Position = 3195 ; 1620
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%multiplier.svg
+                }
+            Parameters
+                {
+                Advance method = Lst; 1%Purely static%Estimate step% ; 
+                dQmin = Str; 1e-6 ; 
+                dQrel = Str; 1e-3 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Square Pow
+            Ports = 1 ; 1
+            Path = qss\xpower2.h
+            Description = Calculates x^2. (QSS1 to 4)
+            Graphic
+                {
+                Position = 1920 ; 1545
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%square.svg
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = ImpFunction
+            Ports = 1 ; 1
+            Path = qss/implicit.h
+            Description = Nonlinear Implicit function.(QSS1 to 4). Calculates y so that g(u0,u1,...,y)=0
+            Graphic
+                {
+                Position = 4470 ; 1515
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = %continuous%imp_function.svg
+                }
+            Parameters
+                {
+                Expression = Str; y^3+y+u0^2 ; Expression in terms of u0,u1,....,u9 and y.
+                Tolerance = Str; .0001 ; Tolerance for secant method (Scilab).
+                y0 = Str; 1 ; Initial guess (Scilab)
+                Inputs = Str; %Inputs ; 
+                }
+            }
+        Atomic
+            {
+            Name = Power n
+            Ports = 1 ; 1
+            Path = qss\xpowern.h
+            Description = Computes  y=u^n, with n>2. (QSS1 to 4)
+            Graphic
+                {
+                Position = 5670 ; 1545
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%exp.svg
+                }
+            Parameters
+                {
+                n = Str; 3 ; Exponent value (Scilab). n must be greater than 2
+                }
+            }
+        Atomic
+            {
+            Name = Inverse
+            Ports = 1 ; 1
+            Path = qss\inverse_function.h
+            Description = Calculates y = 1 / u  (QSS1 to 4)
+            Graphic
+                {
+                Position = 6870 ; 1620
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%inverse.svg
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = Sin
+            Ports = 1 ; 1
+            Path = qss/sin_function_step.h
+            Description = Computes y=sin(u). (QSS1 to 4)
+            Graphic
+                {
+                Position = 6645 ; 270
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%sin.svg
+                }
+            Parameters
+                {
+                Advance method = Lst; 1%Purely static%Estimate step% ; 
+                dQmin = Str; 1e-6 ; 
+                dQrel = Str; 1e-3 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Delay
+            Ports = 1 ; 1
+            Path = qss\qss_delay.h
+            Description = Delay function (QSS methods)
+            Graphic
+                {
+                Position = 5520 ; 270
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%delay.svg
+                }
+            Parameters
+                {
+                Delay = Str; 1 ; Delay time (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Variable Delay
+            Ports = 2 ; 1
+            Path = qss\dqssv2o3.h
+            Description = Variable Delay function (QSS methods). y(t)=u2(t-u1(t))
+            Graphic
+                {
+                Position = 1695 ; 3420
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%vdelay.svg
+                }
+            Parameters
+                {
+                tau0 = Str; 1 ; Initial delay time (Scilab)
+                y(t<0) = Str; 0 ; Data History (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Pure Integrator
+            Ports = 1 ; 1
+            Path = qss\pure_integrator.h
+            Description = Integrates a piecewise cubic trajectory (computes a piecewise quartic trajectory). This is a static block and it may cause a loop.
+            Graphic
+                {
+                Position = 795 ; 1545
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %continuous%integrator.svg
+                }
+            Parameters
+                {
+                x0 = Str; 0 ; Initial state (Scilab)
+                }
+            }
+        }
+    }

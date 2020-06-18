@@ -1,0 +1,305 @@
+Coupled
+    {
+    Type = Root
+    Name = Sources
+    Ports = 0; 0
+    Description = Source Library
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 555; 555
+        Direction = Right
+        Color = 15
+        Icon = %sources%source.bmp
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Pulse
+            Ports = 0 ; 1
+            Path = sources\pulse_sci.h
+            Description = Pulse generator
+            Graphic
+                {
+                Position = 1320 ; -330
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%pulse.svg
+                }
+            Parameters
+                {
+                Base Value = Str; 0 ; Base Value (Scilab expression)
+                Amplitude = Str; 1 ; Pulse Amplitude (Scilab expression)
+                Initial Time = Str; 0 ; Initial Step Time (Scilab expression)
+                Final Time = Str; 1 ; Final Pulse Time (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Constant
+            Ports = 0 ; 1
+            Path = sources\constant_sci.h
+            Description = Constant
+            Graphic
+                {
+                Position = -1755 ; -330
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%constant.svg
+                }
+            Parameters
+                {
+                K = Str; 1 ; Constant output value (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Triangular
+            Ports = 0 ; 1
+            Path = sources\triangular_sci.h
+            Description = Triangular wave generator
+            Graphic
+                {
+                Position = 5670 ; -255
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%triangular.svg
+                }
+            Parameters
+                {
+                a = Str; 1 ; Amplitude (Scilab expression)
+                f = Str; 1 ; Frequency (in Hz) (Scilab expression)
+                Method = Lst; 2%QSS%QSS2/3% ; Output type
+                dQ = Str; .1 ; Quantization step (Only for QSS) (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Trapezoidal
+            Ports = 0 ; 1
+            Path = sources\trapezoidal_sci.h
+            Description = Trapezoidal generator
+            Graphic
+                {
+                Position = 4545 ; -330
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%trapezoidal.svg
+                }
+            Parameters
+                {
+                Vu = Str; 1 ; High level value (Scilab expression)
+                Vl = Str; 0 ; Low level value (Scilab expression)
+                Tup = Str; 1 ; Time up (Scilab expression)
+                Tdown = Str; 1 ; Time down (Scilab expression)
+                Tr = Str; .5 ; Rise time (Scilab expression)
+                Tf = Str; .5 ; Fall time (Scilab expression)
+                Method = Lst; 2%QSS%QSS2/3% ; 
+                dQ = Str; .1 ; Quantization (only for QSS) (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Sinusoidal
+            Ports = 0 ; 1
+            Path = sources\sinegen_sci.h
+            Description = Sinusoidal generator.
+            Graphic
+                {
+                Position = 3570 ; -180
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%sine.svg
+                }
+            Parameters
+                {
+                a = Str; 1 ; Amplitude (Scilab expression)
+                f = Str; 1 ; Frequency (in Hz)  (Scilab expression)
+                phi = Str; 0 ; Phase (in rad)  (Scilab expression)
+                k = Str; 20 ; Number of events by period.  (Scilab expression)
+                Method = Lst; 3%QSS%QSS2%QSS3%QSS4% ; Method
+                }
+            }
+        Atomic
+            {
+            Name = Step
+            Ports = 0 ; 1
+            Path = sources/step_sci.h
+            Description = Step
+            Graphic
+                {
+                Position = -105 ; -405
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%step.svg
+                }
+            Parameters
+                {
+                u0 = Str; 0 ; initial value (Scilab expression)
+                t0 = Str; 0 ; step time  (Scilab expression)
+                uf = Str; 1 ; final value  (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Ramp
+            Ports = 0 ; 1
+            Path = sources\ramp_sci.h
+            Description = Ramp generator
+            Graphic
+                {
+                Position = 2670 ; -180
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%ramp.svg
+                }
+            Parameters
+                {
+                t0 = Str; 0 ; Initial Time (Scilab expression)
+                tr = Str; 1 ; Rise Time (Scilab expression)
+                v = Str; 1 ; Final value (Scilab expression)
+                Method = Lst; 2%QSS%QSS2/3% ; QSS1 / QSS2
+                dq = Str; .1 ; Quantization step (only for QSS) (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Saw
+            Ports = 0 ; 1
+            Path = sources\saw_sci.h
+            Description = Sawtooth generator
+            Graphic
+                {
+                Position = 270 ; 1245
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%saw.svg
+                }
+            Parameters
+                {
+                A = Str; 1 ; Amplitude (Scilab expression)
+                F = Str; 1 ; Frequency (Scilab expression)
+                Slope = Lst; 1%Possitive%Negative% ; Slope sign
+                Method = Lst; 2%QSS%QSS2/3% ; 
+                dQ = Str; .1 ; Quantization step (only for QSS) (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = Square
+            Ports = 0 ; 1
+            Path = sources\square_sci.h
+            Description = Square wave generator
+            Graphic
+                {
+                Position = -1980 ; 1245
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%square.svg
+                }
+            Parameters
+                {
+                a = Str; 1 ; Amplitude (Scilab expression)
+                f = Str; 1 ; Frecuency  (Scilab expression)
+                d = Str; 50 ; Duty cycle [%]  (Scilab expression)
+                }
+            }
+        Atomic
+            {
+            Name = FromWav
+            Ports = 0 ; 1
+            Path = sources\fromwav.h
+            Description = Reads a PCM Wavefile into PowerDEVS
+            Graphic
+                {
+                Position = 2220 ; 1170
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%fromwav.svg
+                }
+            Parameters
+                {
+                Filename = Str; input.wav ; 
+                }
+            }
+        Atomic
+            {
+            Name = From Workspace
+            Ports = 0 ; 1
+            Path = sources/fromworkspace.h
+            Description = Reads an input signal from Scilab Workspace
+            Graphic
+                {
+                Position = 3945 ; 1320
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%workspace.bmp
+                }
+            Parameters
+                {
+                Time variable = Str; t ; 
+                Signal = Str; u ; 
+                Method = Lst; 1%QSS%QSS2/3% ; 
+                }
+            }
+        Atomic
+            {
+            Name = NRGen
+            Ports = 0 ; 1
+            Path = random/normal_gen.h
+            Description = Normal Random Generator
+            Graphic
+                {
+                Position = 5370 ; 1395
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%nrgen.svg
+                }
+            Parameters
+                {
+                mean = Str; 0 ; Mean Value
+                variance = Str; 1 ; Variance
+                T = Str; 1 ; Period
+                Random seed = Str;  ; an integer or empty string for a random seed
+                }
+            }
+        Atomic
+            {
+            Name = Poisson generator
+            Ports = 0 ; 1
+            Path = random/poisson_gen.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = 1170 ; 3045
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%poisson.svg
+                }
+            Parameters
+                {
+                lambda = Str; 1 ; Mean occurrence rate (Scilab)
+                y = Str; 1 ; Output Value (Scilab)
+                Seed = Str; 0 ; an integer or empty string for a random seed (Scilab)
+                }
+            }
+        }
+    }

@@ -1,0 +1,129 @@
+\chapter{Basic Modeling with PowerDEVS}
+In this chapter, we explain how to build models using existing blocks from the libraries.
+
+\section{Building a Model}
+Let us suppose you want to build a model of a DC drive represented by the following equations:
+\begin{equation}\label{eq:motor}
+  \begin{split}
+   \dt{i_a(t)}&=\frac{U_a(t)-R_a\pr i_a(t)-K\pr \omega(t)}{L_a}\\
+   \dt{\omega(t)}&=\frac{K\pr i_a(t)-b\pr \omega(t)-\tau(t)}{J}\\
+  \end{split}
+\end{equation}
+where the state variables $i_a(t)$ and $\omega(t)$ are the armature current and speed, respectively. The parameters are $R_a$ (armature resistance), $L_a$ (inductance), $b$ (friction), $J$ (inertia), and $K$ (electro-mechanical constant). The model has also two input variables: $U_a(t)$ (armature voltage) and $\tau(t)$ (load torque).
+
+We shall use the following values for the parameters:
+\begin{equation}\label{eq:motor_pars}
+\begin{split}
+ R_a&=1.73,\;L_a=2.54\times 10^{-3},\;J=1.62\times 10^{-5},\\
+b&=1.12\times 10^{-5},\;K=0.0551 
+\end{split}
+\end{equation}
+
+Initially, we shall suppose that the input signals are steps:
+\begin{equation}
+ U_a(t)=24\pr \mu(t),\;\;\tau(t)=0.25\pr \mu(t-0.1)
+\end{equation}
+where $\mu(t)$ is the unit step (i.e., it takes the value $1$ for all $t>0$ and it is $0$ otherwise).
+
+The first step then consists in creating a new model (\verb"Ctrl+N") and building the block diagram using blocks from the libraries at the left of the modeling window.
+
+We need blocks of type \verb"QSS integrator" and \verb"WSum" from the \verb"Continuous" library. For the input signals, we take \verb"Step" blocks from the \verb"Source" library. In order to plot the results, we take a \verb"GnuPlot" block from the \verb"Sink" library.
+
+Then, we can connect the blocks as shown in Fig.\ref{fig:db_motor}. 
+
+\begin{figure}[h]
+ \jpgfile{db_motor}{14}
+ \caption{PowerDEVS Model of a DC Motor}
+ \label{fig:db_motor}
+\end{figure}
+
+Notice that the \verb"WSum" block in the \verb"Continuous" library has only two input ports, while the same block in the model has three input ports. In this block (and also in the \verb"GnuPlot" block) the number of input ports is a parameter which can be changed by double clicking on the block.
+
+Besides the number of input ports, the \verb"WSum" and \verb"Step" blocks have other parameters that must be changed in order to correctly represent the model of Eq.\eqref{eq:motor}. Figure \ref{fig:motor_pars} shows the parametrization of these blocks.
+
+\begin{figure}[h]
+ \jpgfile{motor_pars}{14}
+ \caption{Block Parameters of the DC Motor Model}
+ \label{fig:motor_pars}
+\end{figure}
+ 
+As it can be noticed, most parameters in Figure~\ref{fig:motor_pars} were defined by expressions like \verb"K/J". Most blocks of PowerDEVS libraries accept Scilab expressions as parameters. 
+
+If some variable involved in a parameter expression were not defined in Scilab, PowerDEVS will provoke a warning message during the simulation and the corresponding parameter will take the value \verb"0".
+
+Scilab parameters can be also defined in PowerDEVS using the block \verb"Scilab Command" from the \verb"Sink" library. This block executes Scilab commands at the different stages of a simulation run. Thus, it can executes a command like \verb"Ra=1.73" in order to set a value for variable \verb"Ra". Figure~\ref{fig:motor_prior} shows the model with the parameters of this block. 
+
+\begin{figure}[h]
+ \jpgfile{motor_prior}{14}
+ \caption{Scilab command block parameters and model priorities}
+ \label{fig:motor_prior}
+\end{figure}
+
+In order to work properly, the block must be initialized before the other blocks, so when they ask Scilab for their parameters, the corresponding variables were already set. To that goal, PowerDEVS allows to establish priorities among the blocks, so that they are initialized in a desired order. Going to \verb"Edit->Priority" (or clicking on the blue up arrow icon) a new window is open to select the model priorities. Figure~\ref{fig:motor_prior} also shows the priority select window.    
+
+One problem with the model of Figure~\ref{fig:db_motor} is that the block names do not provide information about the variables they calculate. Block names can be changed by double--clicking on the corresponding label.
+
+Additional information can be provided to the model by inserting \emph{annotations}. Annotation labels can be added by selecting the option \verb"Add annotation" after right--clicking on the model or through the \verb"Edit" menu. 
+
+Figure~\ref{fig:db_motor2} shows the DC Motor model with the annotations and the blocks renamed.
+
+\begin{figure}[h]
+ \jpgfile{db_motor2}{14}
+ \caption{PowerDEVS Model of a DC Motor with annotations and renamed blocks}
+ \label{fig:db_motor2}
+\end{figure}
+
+\FloatBarrier
+
+\section{Hierarchical Coupling}
+Let us suppose that we want to implement a speed control for the motor model. For that goal, we propose the following \emph{Proportional--Integral} (PI) control law:
+\begin{equation*}
+ \begin{split}
+  \dot e_I&=\omega_{\text{ref}}(t)-\omega(t)\\
+  U_a(t) &=k_p \pr \omega_{\text{ref}}(t)-\omega(t) + k_I \pr e_I(t)
+ \end{split}
+\end{equation*}
+where $ \omega_{\text{ref}}(t)$ is the reference speed trajectory. 
+
+This controller can be easily built using \verb"Quantized Integrator" and \verb"WSum" blocks, obtaining the model shown in Figure~\ref{fig:db_pi_motor}. There, the reference speed $\omega_{\text{ref}}(t)$is a ramp signal, generated by the \verb"Ramp" block of the \verb"Source" library.
+
+\begin{figure}[h]
+ \jpgfile{db_pi_motor}{14}
+ \caption{DC Motor with a Proportional Integral controller}
+ \label{fig:db_pi_motor}
+\end{figure}
+
+This block diagram has a problem. It contain too many blocks and so it cannot be easily analyzed and understood. 
+
+In cases like this, the model organization can be improved by grouping the blocks of each sub--system to form \emph{coupled} blocks that, at the higher hierarchical level, are seen as single blocks.
+
+PowerDEVS allows to group blocks inside \verb"Coupled" blocks at the \verb"Basic Elements" library.
+
+In this case, we shall group the whole DC motor model as a single coupled model. For that goal, we first drag a \verb"Coupled" block to the model, and then, we shall select the blocks corresponding to the motor as shown in Fig.\ref{fig:select_model}.
+
+\begin{figure}[h]
+ \jpgfile{select_model}{14}
+ \caption{Creating a Coupled Model}
+ \label{fig:select_model}
+\end{figure}
+ 
+Then, we shall cut the selected blocks with \verb"Ctrl+x" or by clicking on the corresponding option at the \verb"Edit" menu.
+
+After that, we open the \verb"Coupled" block by right clicking on it or from the \verb"Edit" menu and then we paste the blocks that were cut from the whole model.
+
+We also drag into this subsystem two \verb"Inport" (input ports) and two \verb"Outport" (output ports) blocks from the \verb"Basic Elements" library to connect the corresponding variables. After renaming the blocks accordingly, the subsystem looks like the one shown in Fig.\ref{fig:motor_subsys}.
+
+\begin{figure}[h]
+ \jpgfile{motor_subsys}{14}
+ \caption{DC Motor Subsystem}
+ \label{fig:motor_subsys}
+\end{figure}
+
+Once the subsystem is complete, it can be used at the higher hierarchical layer as a single block. Figure~\ref{fig:db_pi_motor_coup} shows the resulting model, where the coupled block was renamed as \verb"DC Motor".
+
+\begin{figure}[h]
+ \jpgfile{db_pi_motor_coup}{14}
+ \caption{Controlled DC Motor using hierarchical coupling}
+ \label{fig:db_pi_motor_coup}
+\end{figure}
+

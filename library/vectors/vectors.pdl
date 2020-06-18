@@ -1,0 +1,401 @@
+Coupled
+    {
+    Type = Root
+    Name = Vectors
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 0; 0
+        Direction = Down
+        Color = 15
+        Icon = %vectors%indexshift.svg
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Vector WSum
+            Ports = 2 ; 1
+            Path = vector\qss_sum_vec.h
+            Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+            Graphic
+                {
+                Position = -405 ; -4485
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = %vectors%sum.svg
+                }
+            Parameters
+                {
+                K[0] = Str; 1 ; 
+                K[1] = Str; 1 ; 
+                K[2] = Str; 0 ; 
+                K[3] = Str; 0 ; 
+                K[4] = Str; 0 ; 
+                K[5] = Str; 0 ; 
+                K[6] = Str; 0 ; 
+                K[7] = Str; 0 ; 
+                Inputs = Str; %Inputs ; 
+                Size = Str; 10 ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Vector_to Scalar
+            Ports = 1 ; 1
+            Path = vector\vec2scalar.h
+            Description = Vector to scalar signal
+            Graphic
+                {
+                Position = -2280 ; -1080
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vec2scalar.svg
+                }
+            Parameters
+                {
+                Index = Str; 0 ; Signal Index
+                Size = Str; 10 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Scalar_to Vector
+            Ports = 1 ; 1
+            Path = vector\scalar2vec.h
+            Description = Scalar to Vector Signal. Index -1 propagates the input to all outputs.
+            Graphic
+                {
+                Position = -2430 ; -4605
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%scalar2vec.svg
+                }
+            Parameters
+                {
+                Index = Str; 0 ; Signal Index
+                Size = Str; 10 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Vector 2Pow
+            Ports = 1 ; 1
+            Path = vector\vector_pow2.h
+            Description = y=u^2. (QSS1 to 4)
+            Graphic
+                {
+                Position = -480 ; -2655
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%square.svg
+                }
+            Parameters
+                {
+                Size = Str; 10 ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Vector Saturation
+            Ports = 1 ; 1
+            Path = vector\vector_sat.h
+            Description = Vector Saturation
+            Graphic
+                {
+                Position = -2430 ; -2730
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%saturation.svg
+                }
+            Parameters
+                {
+                xl = Str; -1 ; Lower saturation limit (Scilab expression)
+                xu = Str; 1 ; Upper saturation level (Scilab expression)
+                Size = Str; 10 ; Vector Size (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Vector QSS_Int
+            Ports = 1 ; 1
+            Path = vector\qss_integrator_vec.h
+            Description = Quantized Integrator (QSS methods) with logartithmic quantization
+            Graphic
+                {
+                Position = -480 ; -1080
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%integrator.svg
+                }
+            Parameters
+                {
+                Method = Lst; 3%QSS%QSS2%QSS3%QSS4%BQSS%CQSS%LIQSS%LIQSS2%LIQSS3% ; 
+                dqmin = Str; 1e-6 ; minimum quantum (Scilab)
+                dqrel = Str; 1e-3 ; relative quantum (0 : uniform) (Scilab)
+                x0 = Str; 0 ; Initial state (Scilab)
+                Size = Str; 10 ; Vector Dimension
+                }
+            }
+        Atomic
+            {
+            Name = Index Shift
+            Ports = 1 ; 2
+            Path = vector/index_shift_d.h
+            Description = Vector Index Shift. Computes y(index)=u(index+shift). Discards through second port the out of range events
+            Graphic
+                {
+                Position = -2205 ; 570
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%indexshift.svg
+                }
+            Parameters
+                {
+                shift = Str; 1 ; Signal Index Shift
+                Size = Str; 10 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Vector NRGen
+            Ports = 0 ; 1
+            Path = vector\normal_gen_vec.h
+            Description = Normal Random Generator (Vectorial)
+            Graphic
+                {
+                Position = -630 ; 420
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%nrgen.svg
+                }
+            Parameters
+                {
+                mean = Str; 0 ; Mean Value
+                variance = Str; 1 ; Variance
+                T = Str; 1 ; Period
+                seed = Str;  ; Integer vector or empty string for random seeds
+                Size = Str; 10 ; 
+                }
+            }
+        Atomic
+            {
+            Name = Vector Hysteresis
+            Ports = 1 ; 1
+            Path = vector\hyst_vec.h
+            Description = Hysteretic function.
+            Graphic
+                {
+                Position = -2205 ; 2220
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%hysteresis.svg
+                }
+            Parameters
+                {
+                xl = Str; -1 ; Low input level (Scilab expression).
+                xu = Str; 1 ; High input level  (Scilab expression)
+                yl = Str; -1 ; Low output value  (Scilab expression).
+                yu = Str; 1 ; High output  (Scilab expression)
+                Size = Str; 10 ; Vector Dimension
+                }
+            }
+        Atomic
+            {
+            Name = Vector Sum
+            Ports = 1 ; 1
+            Path = vector/vector_sum.h
+            Description = y = K * ( u[0][0] + u[0][1] + ... +  u[0][N])
+            Graphic
+                {
+                Position = -555 ; 2145
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vecsum.svg
+                }
+            Parameters
+                {
+                K = Str; 1 ; Gain
+                Size = Str; 10 ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Matrix Gain
+            Ports = 1 ; 1
+            Path = vector/matrix_gain.h
+            Description = y = A * u, where u and y are vectors and parameter A is a Scilab matrix.
+            Graphic
+                {
+                Position = 945 ; 1920
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%matrixgain.svg
+                }
+            Parameters
+                {
+                A = Str; [0 1\;-1 -1] ; Matrix Gain
+                }
+            }
+        Atomic
+            {
+            Name = Vector Sample
+            Ports = 1 ; 1
+            Path = vector/vector_sample.h
+            Description = Vector Sample and Hold
+            Graphic
+                {
+                Position = -2355 ; 3870
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%samphold.svg
+                }
+            Parameters
+                {
+                T = Str; 1 ; Sampling Period (Scilab)
+                phi = Str; 0 ; Delay
+                Size = Str; 10 ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Vector CrossDet
+            Ports = 1 ; 1
+            Path = vector/vector_cross_det.h
+            Description = Produces events when u=level. (QSS1 to 4). (vector)
+            Graphic
+                {
+                Position = -330 ; 3645
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%crossdetector.svg
+                }
+            Parameters
+                {
+                level = Str; 0 ; Crossing level (Scilab expression)
+                output = Str; 1 ; Output event value (Scilab expression)
+                Size = Str; 10 ; Vector Size (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Vector Triggered Sampler
+            Ports = 2 ; 1
+            Path = vector/vector_commsampler.h
+            Description = Samples and holds u0 when receives events in u1. Works with polynomials up to 5th order. (Vector)
+            Graphic
+                {
+                Position = 1470 ; 3570
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%triggeredsampler.svg
+                }
+            Parameters
+                {
+                Size = Str; 10 ; Vector Size (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Vector Unit_Delay
+            Ports = 1 ; 1
+            Path = vector/vector_unitdelay.h
+            Description = Vector Unit Delay
+            Graphic
+                {
+                Position = 1095 ; 120
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vqoperator.svg
+                }
+            Parameters
+                {
+                x0 = Str; 0 ; Initial State (Scilab)
+                Ts = Str; 1 ; Sampling Time (Scilab)
+                Size = Str; 10 ; Vector Size (Scilab)
+                }
+            }
+        Atomic
+            {
+            Name = Vector Multiplier
+            Ports = 2 ; 1
+            Path = vector/qss_multiplier_vec.h
+            Description = y = u0 * u1 * ... * u7 (QSS1 to 4)
+            Graphic
+                {
+                Position = 1020 ; -1380
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%multiplier.svg
+                }
+            Parameters
+                {
+                Inputs = Str; %Inputs ; 
+                Size = Str; 10 ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Index Selector
+            Ports = 1 ; 1
+            Path = vector/index_selector.h
+            Description = Vector Index Selector. Only propagates messages when index is between from and to
+            Graphic
+                {
+                Position = 4770 ; 3945
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%indexselector.svg
+                }
+            Parameters
+                {
+                from = Str; 0 ; Starting Signal Index
+                to = Str; 9 ; Ending Signal Index
+                Size = Str; N ; 
+                }
+            }
+        Atomic
+            {
+            Name = Index Mapper
+            Ports = 1 ; 1
+            Path = vector/index_mapper.h
+            Description = Vector Index Mapper. Computes y(index)=u(map(index)). map is an NxN matrix with 0 or 1.
+            Graphic
+                {
+                Position = 4665 ; 1905
+                Dimension = 720 ; 705
+                Direction = Right
+                Color = 15
+                Icon = %vectors%indexmap.svg
+                }
+            Parameters
+                {
+                map = Str; [0 1\; 0 0] ; Mapping matrix
+                N = Str; 2 ; Vector Size
+                }
+            }
+        }
+    }

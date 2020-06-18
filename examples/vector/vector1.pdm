@@ -1,0 +1,279 @@
+Coupled
+    {
+    Type = Root
+    Name = vector1
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 0; 0
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Vector QSS_Int 0
+            Ports = 1 ; 1
+            Path = vector\qss_integrator_vec.h
+            Description = Quantized Integrator (QSS methods) with logartithmic quantization
+            Graphic
+                {
+                Position = 45 ; -2880
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%integrator.svg
+                }
+            Parameters
+                {
+                Method = Lst; 3%QSS%QSS2%QSS3%QSS4%BQSS%CQSS%LIQSS%LIQSS2%LIQSS3% ; 
+                dqmin = Str; 1e-6 ; minimum quantum (Scilab)
+                dqrel = Str; 1e-3 ; relative quantum (0 : uniform) (Scilab)
+                x0 = Str; rand() ; Initial state (Scilab)
+                Size = Str; 3 ; Vector Dimension
+                }
+            }
+        Atomic
+            {
+            Name = Vector NRGen 0
+            Ports = 0 ; 1
+            Path = vector\normal_gen_vec.h
+            Description = Normal Random Generator (Vectorial)
+            Graphic
+                {
+                Position = -3255 ; -3030
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%nrgen.svg
+                }
+            Parameters
+                {
+                mean = Str; 0 ; Mean Value
+                variance = Str; 1 ; Variance
+                T = Str; 1 ; Period
+                Size = Str; 3 ; Vector Dimension
+                }
+            }
+        Atomic
+            {
+            Name = Vector WSum 0
+            Ports = 2 ; 1
+            Path = vector\qss_sum_vec.h
+            Description = y = K[0] * u0 + K[1] * u1 + ... + K[7] * u7 (QSS1 to 4)
+            Graphic
+                {
+                Position = -1605 ; -2880
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%sum.svg
+                }
+            Parameters
+                {
+                K[0] = Str; 1 ; 
+                K[1] = Str; -1 ; 
+                K[2] = Str; 0 ; 
+                K[3] = Str; 0 ; 
+                K[4] = Str; 0 ; 
+                K[5] = Str; 0 ; 
+                K[6] = Str; 0 ; 
+                K[7] = Str; 0 ; 
+                Inputs = Str; %Inputs ; 
+                Size = Str; 3 ; Vector Size
+                }
+            }
+        Atomic
+            {
+            Name = Vector_to Scalar 0
+            Ports = 1 ; 1
+            Path = vector\vec2scalar.h
+            Description = Vector to scalar signal
+            Graphic
+                {
+                Position = 2145 ; -3555
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vec2scalar.svg
+                }
+            Parameters
+                {
+                Index = Str; 0 ; Signal Index
+                }
+            }
+        Atomic
+            {
+            Name = Vector_to Scalar 1
+            Ports = 1 ; 1
+            Path = vector\vec2scalar.h
+            Description = Vector to scalar signal
+            Graphic
+                {
+                Position = 2295 ; -2130
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vec2scalar.svg
+                }
+            Parameters
+                {
+                Index = Str; 1 ; Signal Index
+                }
+            }
+        Atomic
+            {
+            Name = GnuPlot 0
+            Ports = 3 ; 0
+            Path = sinks\gnuplot.h
+            Description = Plot input signal using GnuPlot
+            Graphic
+                {
+                Position = 4560 ; -2070
+                Dimension = 780 ; 855
+                Direction = Right
+                Color = 15
+                Icon = %sinks%gnuplot.svg
+                }
+            Parameters
+                {
+                Inputs = Str; %Inputs ; Number of inputs
+                Format = Str; set xrange [0:%tf] @ set grid @ set title 'Plot' ; General Formatting (use @ as line break)
+                Format1 = Str; with lines title 'First output' ; Formatting options for input 1
+                Format2 = Str; with lines title 'Second output' ; Formatting options for input 2
+                Format3 = Str; with lines title 'Third output' ; Formatting options for input 3
+                Format4 = Str;  ; Formatting options for input 4
+                Format5 = Str;  ; Formatting options for input 5
+                }
+            }
+        Atomic
+            {
+            Name = Vector_to Scalar 2
+            Ports = 1 ; 1
+            Path = vector\vec2scalar.h
+            Description = Vector to scalar signal
+            Graphic
+                {
+                Position = 2295 ; -555
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %vectors%vec2scalar.svg
+                }
+            Parameters
+                {
+                Index = Str; 2 ; Signal Index
+                }
+            }
+        Point
+            {
+            ConectedLines = 4 ; 5 ; 7
+            ConectedExtrems = Org ; Org ; Org
+            Position = 1200 ; -2550
+            }
+        Point
+            {
+            ConectedLines = 6 ; 7 ; 9
+            ConectedExtrems = Org ; Org ; Org
+            Position = 1200 ; -1800
+            }
+        Point
+            {
+            ConectedLines = 3 ; 8 ; 9
+            ConectedExtrems = Org ; Org ; Org
+            Position = 1200 ; -1200
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -825 ; -825 ; -90
+            PointY = -2550 ; -2550 ; -2550
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  3 ;  1 ; -1
+            PointX = -2475 ; -2475 ; -1740
+            PointY = -2700 ; -2700 ; -2700
+            }
+        Line
+            {
+            Source = Cmp ;  3 ;  2 ; -1
+            Sink = Pnt ;  3 ; -1 ; 0
+            PointX = -1740 ; -1950 ; -1950 ; 1200
+            PointY = -2400 ; -2400 ; -1200 ; -1200
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; -1
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = 2010 ; 1200 ; 1200
+            PointY = -3225 ; -3225 ; -2550
+            }
+        Line
+            {
+            Source = Pnt ;  1 ; -1 ; 0
+            Sink = Cmp ;  1 ;  1 ; 0
+            PointX = 1200 ; 1200 ; 825
+            PointY = -2550 ; -2550 ; -2550
+            }
+        Line
+            {
+            Source = Cmp ;  5 ;  1 ; -1
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = 2160 ; 2160 ; 1200
+            PointY = -1800 ; -1800 ; -1800
+            }
+        Line
+            {
+            Source = Pnt ;  2 ; -1 ; 0
+            Sink = Pnt ;  1 ; -1 ; 0
+            PointX = 1200 ; 1200 ; 1200
+            PointY = -1800 ; -1800 ; -2550
+            }
+        Line
+            {
+            Source = Cmp ;  7 ;  1 ; -1
+            Sink = Pnt ;  3 ; -1 ; 0
+            PointX = 2160 ; 1200 ; 1200
+            PointY = -225 ; -225 ; -1200
+            }
+        Line
+            {
+            Source = Pnt ;  3 ; -1 ; 0
+            Sink = Pnt ;  2 ; -1 ; 0
+            PointX = 1200 ; 1200 ; 1200
+            PointY = -1200 ; -1200 ; -1800
+            }
+        Line
+            {
+            Source = Cmp ;  4 ;  1 ; 0
+            Sink = Cmp ;  6 ;  1 ; -1
+            PointX = 2925 ; 4050 ; 4050 ; 4410
+            PointY = -3225 ; -3225 ; -1875 ; -1875
+            }
+        Line
+            {
+            Source = Cmp ;  6 ;  2 ; -1
+            Sink = Cmp ;  5 ;  1 ; 0
+            PointX = 4410 ; 3225 ; 3225 ; 3075
+            PointY = -1650 ; -1650 ; -1800 ; -1800
+            }
+        Line
+            {
+            Source = Cmp ;  7 ;  1 ; 0
+            Sink = Cmp ;  6 ;  3 ; -1
+            PointX = 3075 ; 4050 ; 4050 ; 4410
+            PointY = -225 ; -225 ; -1425 ; -1425
+            }
+        }
+    }

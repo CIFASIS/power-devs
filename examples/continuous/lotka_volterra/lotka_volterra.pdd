@@ -1,0 +1,6 @@
+This model corresponds to the Lotka Volterra equations:
+
+dx1/dt=a*x1-b*x1*x2
+dx2/dt=-c*x2+d*x1*x2
+
+with a=b=c=d=0.1

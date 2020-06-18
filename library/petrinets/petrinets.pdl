@@ -1,0 +1,81 @@
+Coupled
+    {
+    Type = Root
+    Name = PetriNets
+    Ports = 0; 0
+    Description = Model of Power Devs
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 150; 150
+        Direction = Right
+        Color = 15
+        Icon = %petrinets%place.jpg
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Place
+            Ports = 1 ; 1
+            Path = petri\place.h
+            Description = Place of a Petri Net
+            Graphic
+                {
+                Position = 1470 ; 1245
+                Dimension = 720 ; 720
+                Direction = Right
+                Color = 15
+                Icon = %petrinets%place.svg
+                }
+            Parameters
+                {
+                tokens = Str; 0 ; Initial tokens at place  (Scilab expression)
+                time = Str; 1 ; waiting time  (Scilab expression)
+                Inputs = Str; %Inputs ; Number of input
+                }
+            }
+        Atomic
+            {
+            Name = Transition
+            Ports = 1 ; 1
+            Path = petri/transition.h
+            Description = Transition of a Petri Net
+            Graphic
+                {
+                Position = 2760 ; 1020
+                Dimension = 180 ; 720
+                Direction = Right
+                Color = 1
+                Icon = None
+                }
+            Parameters
+                {
+                time = Str; 1 ; Firing time  (Scilab expression)
+                Inputs = Str; %Inputs ; Number of input
+                }
+            }
+        Atomic
+            {
+            Name = Event Triggered Transition
+            Ports = 1 ; 1
+            Path = petri\event_triggered_transition.h
+            Description = Event Triggered transition of a Petri Net
+            Graphic
+                {
+                Position = 4335 ; 1170
+                Dimension = 180 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        }
+    }

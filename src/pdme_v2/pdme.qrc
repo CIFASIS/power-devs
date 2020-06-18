@@ -1,0 +1,21 @@
+<RCC>
+<qresource>
+	<file>images/new.png</file>
+	<file>images/open.png</file>
+	<file>images/save.png</file>
+	<file>images/cut.png</file>
+	<file>images/copy.png</file>
+	<file>images/paste.png</file>
+	<file>images/find.png</file>
+	<file>images/power.png</file>
+	<file>images/delete.png</file>	
+	<file>images/priority.png</file>
+	<file>images/rotate.png</file>
+	<file>images/floodfill.png</file>
+	<file>images/select.png</file>
+	<file>images/coupled.png</file>
+	<file>images/splash.png</file>
+	<file>images/undo.png</file>
+	<file>images/redo.png</file>
+</qresource>
+</RCC>

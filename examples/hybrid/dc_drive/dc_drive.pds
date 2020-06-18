@@ -1,0 +1,113 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = qss/qss_switch.h
+    Parameters = "0"
+   }
+  Simulator
+   {
+    Path = qss/qss_saturation.h
+    Parameters = "-1","1"
+   }
+  Simulator
+   {
+    Path = qss/qss_wsum.h
+    Parameters = "1","-1","0","0","0","0","0","0",2.000000e+00
+   }
+  Simulator
+   {
+    Path = qss/qss_wsum.h
+    Parameters = "1","-1","0","0","0","0","0","0",2.000000e+00
+   }
+  Simulator
+   {
+    Path = sources\triangular_sci.h
+    Parameters = "1.1","1000","QSS2/3",".1"
+   }
+  Simulator
+   {
+    Path = sources\ramp_sci.h
+    Parameters = "0","2","60","QSS2/3",".1"
+   }
+  Simulator
+   {
+    Path = sources\constant_sci.h
+    Parameters = "500"
+   }
+  Simulator
+   {
+    Path = sources\constant_sci.h
+    Parameters = "-500"
+   }
+    Coordinator
+     {
+      Simulator
+       {
+        Path = qss/qss_integrator.h
+        Parameters = "QSS3","1e-6","1e-3","0"
+       }
+      Simulator
+       {
+        Path = qss/qss_integrator.h
+        Parameters = "QSS3","1e-6","1e-3","0"
+       }
+      Simulator
+       {
+        Path = qss/qss_wsum.h
+        Parameters = "-0.06667",".45233","-0.003333","0","0","0","0","0",3.000000e+00
+       }
+      Simulator
+       {
+        Path = qss/qss_wsum.h
+        Parameters = "333.33","-2261.67","-16.667","0","0","0","0","0",3.000000e+00
+       }
+      Simulator
+       {
+        Path = sources/step_sci.h
+        Parameters = "0","3","2500"
+       }
+      EIC
+       {
+        (0,0);(3,0)
+       }
+      EOC
+       {
+        (0,0);(0,0)
+       }
+      IC
+       {
+        (2,0);(0,0)
+        (3,0);(1,0)
+        (4,0);(2,0)
+        (0,0);(3,1)
+        (0,0);(2,2)
+        (1,0);(3,2)
+        (1,0);(2,1)
+       }
+     }
+  Simulator
+   {
+    Path = sinks/gnuplot.h
+    Parameters = 1.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'Speed'","","","",""
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (2,0);(0,1)
+    (1,0);(2,0)
+    (3,0);(1,0)
+    (5,0);(3,0)
+    (4,0);(2,1)
+    (6,0);(0,0)
+    (7,0);(0,2)
+    (0,0);(8,0)
+    (8,0);(9,0)
+    (8,0);(3,1)
+   }
+ }

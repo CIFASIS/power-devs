@@ -1,0 +1,67 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = hybrid\runscilabjob.h
+    Parameters = "tev=cumsum(rand(1,200)),uev=ones(1,200)","",""
+   }
+  Simulator
+   {
+    Path = petri\place.h
+    Parameters = "1","0",1.000000e+00
+   }
+  Simulator
+   {
+    Path = petri\place.h
+    Parameters = "4","0",1.000000e+00
+   }
+  Simulator
+   {
+    Path = petri/transition.h
+    Parameters = "0",2.000000e+00
+   }
+  Simulator
+   {
+    Path = petri\place.h
+    Parameters = "0","0.55",1.000000e+00
+   }
+  Simulator
+   {
+    Path = petri/transition.h
+    Parameters = "0",1.000000e+00
+   }
+  Simulator
+   {
+    Path = sinks/gnuplot.h
+    Parameters = 3.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with steps title 'Queue length'","with impulses  title 'Arrivals'","with impulses  title 'Completed'","",""
+   }
+  Simulator
+   {
+    Path = petri\event_triggered_transition.h
+    Parameters = 
+   }
+  Simulator
+   {
+    Path = sources/fromworkspace.h
+    Parameters = "tev","uev","QSS"
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (3,0);(4,0)
+    (4,0);(5,0)
+    (5,0);(1,0)
+    (7,0);(2,0)
+    (2,0);(6,0)
+    (2,0);(3,1)
+    (8,0);(6,1)
+    (8,0);(7,0)
+    (1,0);(6,2)
+    (1,0);(3,0)
+   }
+ }

@@ -1,0 +1,86 @@
+Coupled
+    {
+    Type = Root
+    Name = Basic Elements
+    Ports = 1; 1
+    Description = Basic elements of PowerDEVS
+    Graphic
+        {
+        Position = 0; 990
+        Dimension = 675; 675
+        Direction = Right
+        Color = 15
+        Icon = %basicelements%basic.bmp
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Inport
+            {
+            Name = Inport
+            CoupledPort = 1
+            Description = 
+            Graphic
+                {
+                Position = 2010 ; 375
+                Dimension = 480
+                Direction = Right
+                }
+            }
+        Outport
+            {
+            Name = Outport
+            CoupledPort = 1
+            Description = 
+            Graphic
+                {
+                Position = 2835 ; 375
+                Dimension = 480
+                Direction = Right
+                }
+            }
+        Atomic
+            {
+            Name = Atomic
+            Ports = 1 ; 1
+            Path = 
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -780 ; 195
+                Dimension = 675 ; 720
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Coupled
+            {
+            Type = Coordinator
+            Name = Coupled
+            Ports = 0; 0
+            Description = Coupled DEVS model
+            Graphic
+                {
+                Position = 720; 120
+                Dimension = 675; 720
+                Direction = Right
+                Color = 15
+                Icon = %basicelements%coupled.svg
+                Window = 5000; 5000; 5000; 5000
+                }
+            Parameters
+                {
+                }
+            System
+                {
+                }
+            }
+        }
+    }

@@ -1,0 +1,42 @@
+Coupled
+    {
+    Type = Root
+    Name = Discrete
+    Ports = 0; 0
+    Description = Discrete Time Library
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 555; 555
+        Direction = Right
+        Color = 15
+        Icon = %discrete%/discrete.svg
+        Window = 4365; 3150; 6615; 5205
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = Unit Delay
+            Ports = 1 ; 1
+            Path = discrete\qoperator_sci.h
+            Description = Discrete delay
+            Graphic
+                {
+                Position = 1710 ; 630
+                Dimension = 680 ; 680
+                Direction = Right
+                Color = 15
+                Icon = %discrete%qoperator.svg
+                }
+            Parameters
+                {
+                x0 = Str; 0 ; Initial state (Scilab expression)
+                Ts = Str; 1 ; Sampling Period (Scilab expression)
+                }
+            }
+        }
+    }

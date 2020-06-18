@@ -1,0 +1,117 @@
+Coupled
+    {
+    Type = Root
+    Name = RealTime
+    Ports = 0; 0
+    Description = Real Time Blocks
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 555; 555
+        Direction = Right
+        Color = 15
+        Icon = %realtime%clock.svg
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = RT Ev Synchro
+            Ports = 1 ; 1
+            Path = realtime\clock_wait.h
+            Description = Shyncronizes the events with the PC clock.
+            Graphic
+                {
+                Position = 570 ; 420
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %realtime%event_sync.gif
+                }
+            Parameters
+                {
+                Wait Mode = Lst; 2%Normal%Precise% ; 
+                }
+            }
+        Atomic
+            {
+            Name = IRQ 7 Detector
+            Ports = 0 ; 1
+            Path = realtime\rtdetect.h
+            Description = Sends an event when an Interrupt has ocurred on the parallel port.
+            Graphic
+                {
+                Position = 1470 ; 420
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %realtime%parallel_irq.gif
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = Real Time Clock
+            Ports = 1 ; 1
+            Path = realtime\realtimeclock.h
+            Description = Outputs the real time clock when recieves an input event
+            Graphic
+                {
+                Position = 2970 ; 420
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %realtime%digital_clock.gif
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = RTView Knob 
+            Ports = 0 ; 1
+            Path = realtime/rtview_knob.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = 645 ; 2070
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %realtime%knob.svg
+                }
+            Parameters
+                {
+                Min = Str; -5 ; 
+                Max = Str; 300 ; 
+                Value = Str; 53 ; 
+                }
+            }
+        Atomic
+            {
+            Name = RTView LCD
+            Ports = 1 ; 0
+            Path = realtime/rtview_lcd.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = 1920 ; 2070
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %realtime%lcd.svg
+                }
+            Parameters
+                {
+                Initial Value = Str; 34 ; 
+                }
+            }
+        }
+    }

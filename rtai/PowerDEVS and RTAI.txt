@@ -1,0 +1,11 @@
+This a modified version of Ubuntu that includes the PowerDEVS simulator
+along with the RTAI kernel and modules.
+The distribution is ready to run realtime simulations from the livecd or can be installed as any other Ubuntu.
+Care must be taken when developing models to be run in realtime.
+For example there can be no Linux syscalls during the simulation (open/read/write) for they ruin the realtime performance, thus Linux syscalls must be restricted to initialization and clean up functions.
+PowerDEVS offers some file operations functions that are realtime friendly.
+PDFile{Open,Read,Write,Close}.
+For more information check the PowerDEVS Utility libraries.
+
+Federico Bergero
+fedebergero@gmail.com

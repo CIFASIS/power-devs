@@ -1,0 +1,56 @@
+\documentclass[a4paper,12pt]{book}
+
+\usepackage{hyperref,url}
+\usepackage [latin1] {inputenc}
+\usepackage{index}
+\usepackage{graphicx,placeins}
+\usepackage[scanall]{psfrag}
+\usepackage{amsmath,amssymb}
+\input{commands}
+
+\renewcommand\floatpagefraction{.99}
+\renewcommand\topfraction{.99}
+\renewcommand\bottomfraction{.99}
+\renewcommand\textfraction{.01}
+\setcounter{totalnumber}{50} \setcounter{topnumber}{50}
+\setcounter{bottomnumber}{50}
+
+
+\title{\Huge{\textbf{PowerDEVS}}\\ \vspace{1cm} \large{Version 2.3} \\ \vspace{1cm} \huge{User's Guide}\vspace{2cm}}
+\author{ Ernesto Kofman and Federico Bergero\vspace{2cm} \\ CIFASIS -- CONICET\\FCEIA, UNR, Argentina}
+\date{2015}
+\makeindex
+
+
+\begin{document}
+
+ \maketitle
+
+ \tableofcontents
+
+
+
+\input{chap_intro}
+
+%\input{chap_get_start}
+
+
+%\chapter{DEVS formalism}
+\input{chap_modeling}
+
+
+%\chapter{Simulation with PowerDEVS}
+\input{chap_simulation}
+
+%\chapter{Creating and editing atomic DEVS blocks}
+
+\chapter{PoweDEVS and Scilab}
+
+\chapter{Realtime simulation}
+
+\appendix
+\chapter{Engine functions}
+
+\chapter{PowerDEVS libraries}
+
+\end{document}

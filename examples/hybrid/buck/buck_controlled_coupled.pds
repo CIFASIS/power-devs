@@ -1,0 +1,236 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = hybrid\runscilabjob.h
+    Parameters = "Ron=1e-5,Roff=1e5,L=1e-4,C=1e-4,Rl=10","",""
+   }
+    Coordinator
+     {
+      Simulator
+       {
+        Path = qss/qss_integrator.h
+        Parameters = "LIQSS3","1e-2","1e-3","0"
+       }
+      Simulator
+       {
+        Path = qss/qss_integrator.h
+        Parameters = "LIQSS3","1e-3","1e-3","0"
+       }
+      Simulator
+       {
+        Path = sources\constant_sci.h
+        Parameters = "Ron"
+       }
+      Simulator
+       {
+        Path = sources\constant_sci.h
+        Parameters = "Roff"
+       }
+      Simulator
+       {
+        Path = qss/qss_switch.h
+        Parameters = "0"
+       }
+      Simulator
+       {
+        Path = qss/qss_switch.h
+        Parameters = "0.5"
+       }
+      Simulator
+       {
+        Path = qss/qss_switch.h
+        Parameters = "0"
+       }
+        Coordinator
+         {
+          Simulator
+           {
+            Path = qss/qss_wsum.h
+            Parameters = "1","1","0","0","0","0","0","0",2.000000e+00
+           }
+          Simulator
+           {
+            Path = qss\inverse_function.h
+            Parameters = 
+           }
+          Simulator
+           {
+            Path = qss/qss_multiplier.h
+            Parameters = "Purely static","1e-6","1e-3"
+           }
+          Simulator
+           {
+            Path = qss/qss_multiplier.h
+            Parameters = "Purely static","1e-6","1e-3"
+           }
+          Simulator
+           {
+            Path = qss/qss_multiplier.h
+            Parameters = "Purely static","1e-6","1e-3"
+           }
+          Simulator
+           {
+            Path = qss\inverse_function.h
+            Parameters = 
+           }
+          Simulator
+           {
+            Path = qss/qss_multiplier.h
+            Parameters = "Purely static","1e-6","1e-3"
+           }
+          Simulator
+           {
+            Path = qss/qss_multiplier.h
+            Parameters = "Purely static","1e-6","1e-3"
+           }
+          Simulator
+           {
+            Path = qss/qss_wsum.h
+            Parameters = "24","-1","0","0","0","0","0","0",2.000000e+00
+           }
+          EIC
+           {
+            (0,2);(4,1)
+            (0,0);(2,1)
+            (0,0);(0,1)
+            (0,1);(5,0)
+            (0,1);(3,1)
+            (0,1);(7,0)
+            (0,1);(0,0)
+           }
+          EOC
+           {
+            (6,0);(0,1)
+            (8,0);(0,0)
+           }
+          IC
+           {
+            (0,0);(1,0)
+            (7,0);(8,0)
+            (2,0);(3,0)
+            (3,0);(4,0)
+            (5,0);(6,0)
+            (4,0);(8,1)
+            (1,0);(2,0)
+            (1,0);(7,1)
+            (8,0);(6,1)
+           }
+         }
+      Simulator
+       {
+        Path = qss/qss_wsum.h
+        Parameters = "-1/C/Rl","1/C","0","0","0","0","0","0",2.000000e+00
+       }
+      Simulator
+       {
+        Path = qss/qss_wsum.h
+        Parameters = "1/L","-1/L","0","0","0","0","0","0",2.000000e+00
+       }
+      Simulator
+       {
+        Path = qss/hysteretic.h
+        Parameters = "-1e-6","1e-6","-1","1"
+       }
+      Simulator
+       {
+        Path = sinks/toscilab_offline.h
+        Parameters = "ti","i"
+       }
+      Simulator
+       {
+        Path = sinks/toscilab_offline.h
+        Parameters = "tv","v"
+       }
+      EIC
+       {
+        (0,0);(5,1)
+       }
+      EOC
+       {
+        (1,0);(0,0)
+       }
+      IC
+       {
+        (9,0);(0,0)
+        (4,0);(10,0)
+        (8,0);(1,0)
+        (5,0);(7,0)
+        (6,0);(7,1)
+        (7,1);(4,2)
+        (3,0);(6,0)
+        (3,0);(5,2)
+        (2,0);(6,2)
+        (2,0);(5,0)
+        (7,0);(4,0)
+        (7,0);(9,0)
+        (10,0);(6,1)
+        (10,0);(4,1)
+        (0,0);(11,0)
+        (0,0);(8,1)
+        (0,0);(7,2)
+        (1,0);(12,0)
+        (1,0);(9,1)
+        (1,0);(8,0)
+       }
+     }
+  Simulator
+   {
+    Path = qss/qss_wsum.h
+    Parameters = "1","-1","0","0","0","0","0","0",2.000000e+00
+   }
+  Simulator
+   {
+    Path = sources\ramp_sci.h
+    Parameters = "0","0.1","6","QSS2/3",".1"
+   }
+  Simulator
+   {
+    Path = qss/qss_integrator.h
+    Parameters = "LIQSS3","1e-3","1e-3","0"
+   }
+  Simulator
+   {
+    Path = qss/qss_wsum.h
+    Parameters = "1","1","0","0","0","0","0","0",2.000000e+00
+   }
+  Simulator
+   {
+    Path = qss/qss_saturation.h
+    Parameters = "-1","1"
+   }
+  Simulator
+   {
+    Path = sources\triangular_sci.h
+    Parameters = "1.1","1e4","QSS2/3",".1"
+   }
+  Simulator
+   {
+    Path = sinks/gnuplot.h
+    Parameters = 1.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'Voltage'","","","",""
+   }
+  Simulator
+   {
+    Path = qss/compare.h
+    Parameters = "-1","1"
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (3,0);(2,0)
+    (4,0);(5,0)
+    (5,0);(6,0)
+    (6,0);(9,0)
+    (7,0);(9,1)
+    (9,0);(1,0)
+    (2,0);(5,1)
+    (2,0);(4,0)
+    (1,0);(8,0)
+    (1,0);(2,1)
+   }
+ }

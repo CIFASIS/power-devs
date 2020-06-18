@@ -1,0 +1,70 @@
+Coupled
+    {
+    Type = Root
+    Name = lcd_example
+    Ports = 0; 0
+    Description = 
+    Graphic
+        {
+        Position = 0; 0
+        Dimension = 0; 0
+        Direction = Right
+        Color = 15
+        Icon = 
+        Window = 5000; 5000; 5000; 5000
+        }
+    Parameters
+        {
+        }
+    System
+        {
+        Atomic
+            {
+            Name = LCDoutput
+            Ports = 1 ; 0
+            Path = sinks/lcd.h
+            Description = Atomic DEVS model
+            Graphic
+                {
+                Position = -3555 ; -2430
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = None
+                }
+            Parameters
+                {
+                }
+            }
+        Atomic
+            {
+            Name = Ramp0
+            Ports = 0 ; 1
+            Path = sources\ramp_sci.h
+            Description = Ramp generator
+            Graphic
+                {
+                Position = -6255 ; 45
+                Dimension = 675 ; 675
+                Direction = Right
+                Color = 15
+                Icon = %sources%ramp.svg
+                }
+            Parameters
+                {
+                t0 = Str; 0 ; Initial Time (Scilab expression)
+                tr = Str; 10 ; Rise Time (Scilab expression)
+                v = Str; 5000 ; Final value (Scilab expression)
+                Method = Lst; 1%QSS%QSS2/3% ; QSS1 / QSS2
+                dq = Str; .1 ; Quantization step (only for QSS) (Scilab expression)
+                }
+            }
+        Line
+            {
+            Source = Cmp ;  2 ;  1 ; 0
+            Sink = Cmp ;  1 ;  1 ; -1
+            PointX = -5475 ; -3690 ; -3690
+            PointY = 375 ; 375 ; -2100
+            }
+        }
+    }

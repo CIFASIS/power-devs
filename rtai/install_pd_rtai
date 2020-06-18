@@ -1,0 +1,34 @@
+#/bin/bash
+cp /tmp/sources.list /etc/apt/
+apt-get update
+dpkg -i /tmp/powerdevs_i386.deb
+dpkg -i /tmp/linux*
+yes | apt-get install -f
+yes | sudo apt-get remove openoffice.org-* ubuntu-docs firefox evolution-common rhythmbox brasero-common empathy-common scilab-doc
+cd /usr/src
+ln -s linux-headers-2.6.32.11+drm33.2 linux
+tar xvjf /tmp/rtai-3.8.1.tar.bz2
+ln -s rtai-3.8.1 rtai
+cd rtai
+cp /tmp/.rtai_config .
+cp /tmp/rtai_config.h .
+yes "" | make config
+make install
+make clean
+cd ..
+rm -rf rtai*
+ldconfig
+cp -a /usr/realtime/modules /lib/modules/2.6.32.11+drm33.2/kernel/rtai
+rm -rf /lib/modules/2.6.32-38-generic
+depmod 2.6.32.11+drm33.2 
+rm /initrd.img
+rm /vmlinuz
+ln -s /boot/vmlinuz-2.6.32.11+drm33.2  /vmlinuz
+ln -s /boot/intrd.gz /initrd.img
+echo "rtai_hal" >> /etc/modules
+echo "rtai_mbx" >> /etc/modules
+#echo "rtai_lxrt" >> /etc/modules
+echo "rtai_sem" >> /etc/modules
+echo "rtai_smi" >> /etc/modules
+cp /tmp/sources.list.orig /etc/apt/sources.list
+apt-get update

@@ -1,0 +1,95 @@
+\chapter{Introduction to PowerDEVS}
+
+\section{Features of PowerDEVS}
+PowerDEVS is an integrated tool modeling and simulation based on the Discrete Event System Specification (DEVS) formalism. 
+
+In spite of being a general purpose DEVS simulation tool, PowerDEVS is well suited for modeling and simulation of continuous and hybrid systems through the usage of Quantized State System (QSS) algorithms.
+
+The main features of PowerDEVS are described below:
+
+\begin{itemize}
+ \item Models can be built as hierarchical Block Diagrams using the \emph{Model Editor} GUI. 
+ \item Atomic blocks can be taken from existing libraries and models or can be created using PowerDEVS \emph{Atomic Editor} tool or any text editor.
+ \item PowerDEVS libraries contain blocks for modeling continuous, hybrid and discrete time systems. For modeling classic discrete event systems, a Petri Net library is also provided. 
+ \item PowerDEVS can use Scilab as Workspace for defining model parameters, performing result analysis, etc.
+ \item PowerDEVS can run under Linux--RTAI Operating System, allowing precise time synchronization, hardware interrupts access and different features suitable for PC based automatic control systems.
+ \item PowerDEVS engine and models are programmed in C++.  
+ \item PowerDEVS is an Open Source multiplatform tool under General Public License (GPL). 
+ \item Source code as well as Windows and Linux binaries are available at SourceForge: \url{http://sourceforge.net/projects/powerdevs/}  
+\end{itemize}
+
+
+\section{PowerDEVS Architecture}
+PowerDEVS is composed by several independent programs:
+\begin{itemize}
+  \item The {\it Model Editor}, which contains the main graphical user interface allowing the hierarchical block-diagram construction, library managing, parameter selection and other high level definitions as well as providing the linking with the other programs.
+
+  \item The {\it Atomic Editor}, which permits editing PowerDEVS atomic models for elementary blocks by defining the corresponding DEVS transition, output and time advance functions using C++ language.
+
+  \item The {\it Preprocessor}, which automatically translates the model editor files into C++ code to build up the simulation code. It also links the C++ code of the different atomic models and compiles it together with the C++ PowerDEVS engine to produce a stand alone executable file which simulates the system.
+
+   \item The {\it Simulation Interface}, which runs the stand alone executable and permits to change different simulation parameters (experimental setup) such as final time, number of simulations to perform, and the simulation mode (normal simulation, timed simulation, step-by-step simulation, etc).
+
+   \item An instance of Scilab, which acts as a workspace, where simulation parameters can be read, and results can be exported to.
+\end{itemize}
+
+\section{Basic Usage}\label{sec:basic_usage}
+\subsection*{Simulating an existing model}
+Figure~\ref{fig:pdevsmodel} shows the PowerDEVS Model Editor main window. A model can be opened from the \verb"File" menu or using the \verb"Ctrl+o" shortcut.
+
+The model shown in Figure~\ref{fig:pdevsmodel} corresponds to the control of a DC motor. It can be found at \verb"powerdevs/examples/hybrid/dc_drive/dc_drive_buck.pdm". PowerDEVS Model Editor saves the models with extension \verb".pdm".
+
+\begin{figure}[h]
+ \jpgfile{pdevsmodel}{14}
+ \caption{PowerDEVS Model Editor}
+ \label{fig:pdevsmodel}
+\end{figure}
+
+After opening the model, it can be simulated. Clicking on the blue \emph{play} icon or going to \verb"Simulation->Simulate" at the menu (or just pressing the shorcut key \verb"F5") PowerDEVS invokes the Preprocessor that automatically generates the C++ code and compiles it. Then, it opens the Simulation Interface, which can be seen at the left of Figure~\ref{fig:pdsimulation} 
+
+\begin{figure}[h]
+ \jpgfile{pdsimulation}{12}
+ \caption{PowerDEVS Simulation Interface and Results}
+ \label{fig:pdsimulation}
+\end{figure}
+
+Clicking on the \verb"Run Simulation" button the simulation is executed. The model in Figure~\ref{fig:pdevsmodel} contains a \verb"GNUPlot" block. This block opens an instance of Gnuplot to plot the signals it receives as it is shown at the right of Figure~\ref{fig:pdsimulation}.
+
+\subsection*{Creating a new model using existing blocks}
+Using the PowerDEVS Model Editor, a new model can be created from the \verb"File" menu or using the \verb"Ctrl+N" shortcut.
+
+Suppose that you want to build a model that simulates the first order continuous time system
+\begin{equation*}
+ \dot x(t)=\sin(2\cdot \pi \cdot t)-x(t)
+\end{equation*}
+A block diagram for the continuous time system consists in an \emph{Integrator} (computing $x(t)$ from $\dot x(t)$), a \emph{Sum} block that calculates $\sin(t)-x(t)$ and a source block that provides the input signal $\sin(t)$.
+
+Figure~\ref{fig:pdmodeling}  shows this block diagram in the PowerDEVS Model Editor. The blocks are drag and dropped from the libraries at the left. The \verb"QSS_Integrator" and the \verb"WSum" blocks were taken from the \verb"Continuous" library. The \verb"Sinusoidal" source block was taken from the \verb"Sources" library and the \verb"GNUPlot" block was taken from the \verb"Sinks" library. Then, the blocks are connected clicking on an input port and dragging until reaching the corresponding output port. Connections can be also performed from output ports to input ports or from input ports to previously existing lines.
+
+\begin{figure}[h]
+ \jpgfile{pdmodeling}{14}
+ \caption{PowerDEVS Model Editor}
+ \label{fig:pdmodeling}
+\end{figure}
+
+Double--clicking on a block opens the corresponding parameter dialog window, where the block parameters can be modified. At the right of Figure~\ref{fig:pdmodeling} the parameters of the \verb"Wsum" are shown. There, the second parameter (which corresponds to the gain of the second input port) was modified so it is $-1$ instead of $1$.
+
+After modifying the parameters, the model must be saved before it can be simulated. 
+
+\section{Features of DEVS and QSS Algorithms}
+PowerDEVS represents and simulates its models based on the \emph{Classic DEVS Formalism}. This formalism allows to represent any system performing a finite number of changes in a finite interval of time.
+
+Thus, in theory, any discrete time or discrete event model can be represented by DEVS and so by PowerDEVS.
+
+In the libraries of PowerDEVS we have included blocks to model arbitrary discrete time systems and also to model \emph{Timed Petri Nets}. Yet, blocks for different discrete formalisms can be eventually included.
+
+However, the main feature of PowerDEVS is that it has a complete library to simulate continuous and hybrid systems using \emph{Quantized State System} (QSS) methods.
+
+QSS methods perform numerical approximations of continuous time systems. These approximations can be expressed as DEVS models.
+
+These algorithms, besides having some nice stability and error bound propeties, show noticeable advantages in the simulation of systems with frequent discontinuities.
+
+In PowerDEVS, QSS methods are implemented in the \verb"QSS_Integrator" block. This block receives and provokes events representing changes in piecewise polynomial trajectories. The remaining blocks of PowerDEVS continuous and hybrid libraries perform different math operations on these trajectories in order to build arbitrary block diagrams. Source and Sink blocks were also programmed in order to work with QSS methods. 
+
+
+

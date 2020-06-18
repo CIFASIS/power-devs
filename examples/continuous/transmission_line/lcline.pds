@@ -1,0 +1,86 @@
+Root-Coordinator
+ {
+  Simulator
+   {
+    Path = hybrid\runscilabjob.h
+    Parameters = "C=1,L=1,N=50","",""
+   }
+  Simulator
+   {
+    Path = vector\qss_integrator_vec.h
+    Parameters = "QSS3","1e-6","1e-3","0","N"
+   }
+  Simulator
+   {
+    Path = vector\qss_integrator_vec.h
+    Parameters = "QSS3","1e-6","1e-3","0","N"
+   }
+  Simulator
+   {
+    Path = vector\qss_sum_vec.h
+    Parameters = "1/C","-1/C","0","0","0","0","0","0",2.000000e+00,"N"
+   }
+  Simulator
+   {
+    Path = vector\index_shift.h
+    Parameters = "1"
+   }
+  Simulator
+   {
+    Path = vector\qss_sum_vec.h
+    Parameters = "1/L","1/L","-1/L","0","0","0","0","0",3.000000e+00,"N"
+   }
+  Simulator
+   {
+    Path = vector\index_shift.h
+    Parameters = "-1"
+   }
+  Simulator
+   {
+    Path = vector\scalar2vec.h
+    Parameters = "0"
+   }
+  Simulator
+   {
+    Path = sources\pulse_sci.h
+    Parameters = "0","1","0","1"
+   }
+  Simulator
+   {
+    Path = sinks\gnuplot.h
+    Parameters = 2.000000e+00,"set xrange [0:%tf] @ set grid @ set title 'Plot'","with lines title 'Voltage u1'","with lines title 'Voltage uN'","","",""
+   }
+  Simulator
+   {
+    Path = vector\vec2scalar.h
+    Parameters = "0"
+   }
+  Simulator
+   {
+    Path = vector\vec2scalar.h
+    Parameters = "N-1"
+   }
+  EIC
+   {
+   }
+  EOC
+   {
+   }
+  IC
+   {
+    (3,0);(1,0)
+    (4,0);(3,1)
+    (5,0);(2,0)
+    (6,0);(5,1)
+    (7,0);(5,0)
+    (8,0);(7,0)
+    (10,0);(9,0)
+    (11,0);(9,1)
+    (2,0);(4,0)
+    (2,0);(3,0)
+    (1,0);(11,0)
+    (1,0);(5,2)
+    (1,0);(6,0)
+    (1,0);(10,0)
+   }
+ }
