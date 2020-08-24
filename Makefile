@@ -1,7 +1,10 @@
 MODE = debug
 QMAKE = qmake
 RTAI = 
-all: pdae pdif pdppt pdme bin/lcd bin/knob bin/rtview pdppt-lib doc/PD_UserGuide.pdf
+
+all: pdae pdif pdppt pdme bin/lcd bin/knob bin/rtview pdppt-lib docs
+
+default: pdae pdif pdppt pdme bin/lcd bin/knob bin/rtview pdppt-lib
 
 bin/lcd:src/atomics/lcd/* 
 	cd ./src/atomics/lcd && $(QMAKE) CONFIG+=$(MODE) 
@@ -41,7 +44,7 @@ else
 endif
 	make -C ./src/pdif 
 
-doc/PD_UserGuide.pdf: src/doc/commands.tex src/doc/pd_userguide.kilepr src/doc/chap_intro.tex src/doc/images src/doc/images/pdevsmodel.jpg src/doc/images/pdmodeling.jpg src/doc/images/pdsimulation.jpg src/doc/chap_get_start.tex src/doc/PD_UserGuide.tex
+docs: src/doc/commands.tex src/doc/pd_userguide.kilepr src/doc/chap_intro.tex src/doc/images src/doc/images/pdevsmodel.jpg src/doc/images/pdmodeling.jpg src/doc/images/pdsimulation.jpg src/doc/chap_get_start.tex src/doc/PD_UserGuide.tex
 	cd ./src/doc && pdflatex PD_UserGuide.tex -output-directory ../../doc
 	cp ./src/doc/PD_UserGuide.pdf ./doc
 
@@ -60,4 +63,4 @@ clean:
 	make -C ./src/atomics/lcd clean
 	make -C ./src/atomics/knob clean
 	make -C ./src/atomics/rtview clean
-	rm -rf bin/pdae bin/pdppt bin/pdif bin/pdme bin/lcd bin/knob bin/rtview
+	rm -rf bin/pdae bin/pdppt bin/pdif bin/pdme bin/lcd bin/knob bin/rtview doc/*
