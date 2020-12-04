@@ -2,17 +2,17 @@
 cd ../../
 ARCH=`uname -m`
 echo "Retrieving latest from Git";
-#git pull
+git pull
 VER=3.0
 
 echo "Building PowerDEVS DEB package for $ARCH";
 echo "Building Binaries";
-#make -f Makefile clean
-#if [ $# -eq 1 ]; then
-#  make -f Makefile MODE=release RTAI=yes 
-#else
-#  make -f Makefile MODE=release 
-#fi
+make -f Makefile clean
+if [ $# -eq 1 ]; then
+  make -f Makefile MODE=release RTAI=yes 
+else
+  make -f Makefile MODE=release 
+fi
 rm -rf tmp_deb
 mkdir tmp_deb
 mkdir tmp
@@ -29,16 +29,15 @@ mkdir ./tmp_deb/opt/powerdevs/output/plots
 
 echo "Installing Scilab"
 cd ./tmp_deb/opt/powerdevs/3rd-party
-#wget https://www.scilab.org/download/5.5.2/scilab-5.5.2.bin.linux-x86_64.tar.gz
-cp ../../../../scilab-5.5.2.bin.linux-x86_64.tar.gz .
+wget https://www.scilab.org/download/5.5.2/scilab-5.5.2.bin.linux-x86_64.tar.gz
+#cp ../../../../scilab-5.5.2.bin.linux-x86_64.tar.gz .
 tar -xvf scilab-5.5.2.bin.linux-x86_64.tar.gz
 rm scilab-5.5.2.bin.linux-x86_64.tar.gz 
 cd ../../../../
 echo "Done"
 
 echo "Archiving repo"
-#git archive powerdevs-dev  | bzip2 >pdevs-src.tar.bz2
-git archive update-config-files  | bzip2 >pdevs-src.tar.bz2
+git archive powerdevs-dev  | bzip2 >pdevs-src.tar.bz2
 cd ./tmp
 mv ../pdevs-src.tar.bz2 .
 tar -xvf pdevs-src.tar.bz2
