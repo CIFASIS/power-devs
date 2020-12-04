@@ -54,6 +54,7 @@ cp -r ./bin/* ./tmp_deb/opt/powerdevs/bin/
 chmod 0755 `find tmp_deb/opt/powerdevs/bin`
 mv ./tmp_deb/opt/powerdevs/bin/original.ini ./tmp_deb/opt/powerdevs/bin/powerdevs.ini
 
+echo $VER > ./tmp_deb/opt/powerdevs/version 
 cp COPYING ./tmp_deb/opt/powerdevs
 cp -r ./tmp/build ./tmp_deb/opt/powerdevs/
 mkdir ./tmp_deb/opt/powerdevs/build/lib
