@@ -1,22 +1,4 @@
 UNAME = $(shell uname)
-ifeq ($(UNAME), Windows)
-OPTFLAGS = 
-DEBUGFLAGS = -g
-CXXFLAGS =  -Wall $(OPTFLAGS) $(DEBUGFLAGS)
-ATOMICS = ..\atomics
-SRCENGINE = ..\engine
-BUILD = ..\build
-BUILDOBJ = ..\build\objs
-BUILDLIB = ..\build\lib
-OUTPUT = ..\output
-MODEL = $(OUTPUT)\model.exe
-RM = del
-MV = copy 
-OBJS = $(BUILDOBJ)\*.o
-LIBS = -lsimpd -lws2_32 -lhdf5
-INCLUDES = -I$(SRCENGINE) -I$(ATOMICS) -I$(BUILD) -L$(BUILDLIB)
-endif
-ifeq ($(UNAME), Linux)
 OPTFLAGS = 
 DEBUGFLAGS = -g
 CXXFLAGS =  -Wall $(OPTFLAGS) $(DEBUGFLAGS)
@@ -26,13 +8,13 @@ BUILD = ../build
 BUILDOBJ = ../build/objs
 BUILDLIB = ../build/lib
 OUTPUT = ../output
-LIBS = -lsimpd -lhdf5
+LIBS = -lsimpd -lhdf5_serial
 RM = rm
 MV = mv
 OBJS = $(BUILDOBJ)/*.o
 MODEL = $(OUTPUT)/model
 INCLUDES = -I$(SRCENGINE) -I$(ATOMICS) -I$(BUILD) -L$(BUILDLIB)
-endif
+
 debug: clean all
 	touch ../output/debug
 	x-terminal-emulator -e ../bin/debug.sh

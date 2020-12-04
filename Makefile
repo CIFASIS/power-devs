@@ -2,9 +2,7 @@ MODE = debug
 QMAKE = qmake
 RTAI = 
 
-all: pdae pdif pdppt pdme bin/lcd bin/knob bin/rtview pdppt-lib docs
-
-default: pdae pdif pdppt pdme bin/lcd bin/knob bin/rtview pdppt-lib
+all: pdae pdif pdppt pdme bin/lcd bin/knob bin/rtview pdppt-lib
 
 bin/lcd:src/atomics/lcd/* 
 	cd ./src/atomics/lcd && $(QMAKE) CONFIG+=$(MODE) 

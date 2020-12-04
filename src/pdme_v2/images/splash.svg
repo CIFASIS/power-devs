@@ -14,7 +14,7 @@
    height="388.89856"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="splash.svg"
    inkscape:export-filename="/home/fbergero/PHD/powerdevs/src/pdme_v2/images/splash.png"
    inkscape:export-xdpi="90"
@@ -210,10 +210,10 @@
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1366"
-     inkscape:window-height="721"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="1920"
+     inkscape:window-y="27"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -253,7 +253,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:2.79301977;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:2.79301977;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 33.446941,193.46697 34.581182,354.5813"
        id="path4483"
        inkscape:connector-type="polyline"
@@ -272,7 +272,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 187.84083,189.77544 31.743208,190.50147"
        id="path4483-9"
        inkscape:connector-type="polyline"
@@ -281,8 +281,8 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 180.58149,280.77422 62.85714,0"
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 180.58149,280.77422 h 62.85714"
        id="path4602"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="0"
@@ -290,7 +290,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:3.06624746;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend);display:inline"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:3.06624746;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Mend)"
        d="m 242.98823,199.46017 66.94834,-0.39554"
        id="path4606"
        inkscape:connector-type="polyline"
@@ -301,7 +301,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot4996"
-       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Ouhod;-inkscape-font-specification:Ouhod Bold"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0.01%;font-family:Ouhod;-inkscape-font-specification:'Ouhod Bold';fill:#000000;fill-opacity:1;stroke:none"
        transform="translate(-169.22085,-379.12953)"
        inkscape:export-filename="/home/fmb/powerdevs/src/pdme_v2/images/splash.png"
        inkscape:export-xdpi="90"
@@ -313,10 +313,13 @@
            x="198.57143"
            y="500.93362"
            style="font-size:13px" /></flowRegion><flowPara
-         id="flowPara5002">Integrated Tool for Discrete </flowPara><flowPara
-         id="flowPara5004">Event System Modeling and</flowPara><flowPara
-         id="flowPara5006">Simulation</flowPara></flowRoot>    <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 1;stroke-dashoffset:0"
+         id="flowPara5002"
+         style="font-size:13px;line-height:1.25">Integrated Tool for Discrete </flowPara><flowPara
+         id="flowPara5004"
+         style="font-size:13px;line-height:1.25">Event System Modeling and</flowPara><flowPara
+         id="flowPara5006"
+         style="font-size:13px;line-height:1.25">Simulation</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 1;stroke-dashoffset:0;stroke-opacity:1"
        d="m 44.607271,105.73378 441.436689,1.01015"
        id="path5016"
        inkscape:connector-type="polyline"
@@ -327,7 +330,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot4996-3"
-       style="font-size:13px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Ouhod;-inkscape-font-specification:Ouhod Bold"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0.01%;font-family:Ouhod;-inkscape-font-specification:'Ouhod Bold';fill:#000000;fill-opacity:1;stroke:none"
        transform="translate(85.144844,-192.9262)"
        inkscape:export-filename="/home/fmb/powerdevs/src/pdme_v2/images/splash.png"
        inkscape:export-xdpi="90"
@@ -339,13 +342,15 @@
            x="198.57143"
            y="500.93362"
            style="font-size:13px" /></flowRegion><flowPara
-         id="flowPara5006-7">Developed by:</flowPara><flowPara
-         id="flowPara5100">Control and Simulation of </flowPara><flowPara
+         id="flowPara5006-7"
+         style="font-size:13px;line-height:1.25">Developed by:</flowPara><flowPara
+         id="flowPara5100"
+         style="font-size:13px;line-height:1.25">Control and Simulation of </flowPara><flowPara
          id="flowPara5090"
-         style="text-align:start;text-anchor:start">Dynamics System Group at CIFASIS</flowPara><flowPara
-         style="text-align:end;text-anchor:end"
+         style="font-size:13px;line-height:1.25;text-align:start;text-anchor:start">Dynamics System Group at CIFASIS</flowPara><flowPara
+         style="font-size:13px;line-height:1.25;text-align:end;text-anchor:end"
          id="flowPara5115">2014</flowPara></flowRoot>    <path
-       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 478.87279,303.62613 -202.9201,0.73167"
        id="path4483-9-1"
        inkscape:connector-type="polyline"
@@ -356,16 +361,17 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot5077"
-       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Ouhod;-inkscape-font-specification:Ouhod Bold"><flowRegion
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0.01%;font-family:Ouhod;-inkscape-font-specification:'Ouhod Bold';fill:#000000;fill-opacity:1;stroke:none"><flowRegion
          id="flowRegion5079"><rect
            id="rect5081"
            width="84.852814"
            height="37.375645"
            x="262.63965"
            y="318.99142" /></flowRegion><flowPara
-         id="flowPara5083" /></flowRoot>    <path
-       style="fill:none;stroke:#000000;stroke-width:3.37806749;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 243.51346,200.34244 0,79.40956"
+         id="flowPara5083"
+         style="font-size:36px;line-height:1.25"> </flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:3.37806749;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 243.51346,200.34244 V 279.752"
        id="path3041"
        inkscape:connector-type="polyline"
        inkscape:connector-curvature="3"
@@ -381,8 +387,8 @@
      transform="translate(-5.2849054,-4.6398534)">
     <text
        xml:space="preserve"
-       style="font-size:36px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Prototype;-inkscape-font-specification:Prototype"
-       x="20.939037"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Prototype;-inkscape-font-specification:Prototype;fill:#000000;fill-opacity:1;stroke:none"
+       x="0.73598641"
        y="70.702164"
        id="text2816"
        inkscape:export-filename="/home/fmb/svn_powerdevs/src/pdme_v2/images/splash.png"
@@ -390,8 +396,8 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan2818"
-         x="20.939037"
+         x="0.73598641"
          y="70.702164"
-         style="font-size:64px;text-align:start;text-anchor:start">PowerDEVS 2.4</tspan></text>
+         style="font-size:64px;line-height:1.25;text-align:start;text-anchor:start">PowerDEVS 3.0</tspan></text>
   </g>
 </svg>

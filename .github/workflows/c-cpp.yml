@@ -1,0 +1,24 @@
+name: C/C++ CI
+
+on:
+  push:
+  pull_request:
+    branches: [ power-devs-dev ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install deps.
+      run: | 
+        sudo apt-get install g++
+        sudo apt-get install make
+        sudo apt-get install libqt5svg5-dev
+        sudo apt-get install qt5-default
+          
+    - name: Build
+      working-directory: .
+      run: make
