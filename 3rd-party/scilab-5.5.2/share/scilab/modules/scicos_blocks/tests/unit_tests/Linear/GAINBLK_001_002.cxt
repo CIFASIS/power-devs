@@ -1,3 +1,0 @@
-inType              3                   // Input conversion type
-K                   int32(2.0)          // Gain
-outType             3                   // Output conversion type

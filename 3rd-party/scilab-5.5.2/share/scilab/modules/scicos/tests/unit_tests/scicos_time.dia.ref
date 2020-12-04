@@ -1,2 +1,0 @@
-t=scicos_time();
-if t <> 0 then bugmes();quit;end
