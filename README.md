@@ -52,3 +52,10 @@ The simplest way to compile this package is:
   4. You can remove the program binaries and object files from the
      source code directory by typing `make clean`.  
 
+## Changelog
+
+## [3.0]
+### Added 
+- Scilab removed as a dependency and distributed in the deb package.
+- Build only for Linux x86_64 platforms
+- New Windows distriution binaries based on WSL Linux.  
