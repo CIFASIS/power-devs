@@ -1,2 +1,0 @@
-ierr=execstr("[psim]=phase_simulation()","errcatch");
-if ierr <> 999 then bugmes();quit;end

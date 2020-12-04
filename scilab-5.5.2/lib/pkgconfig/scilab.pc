@@ -1,0 +1,13 @@
+prefix=/home/scilab/SuperCC/sci_binary/scilab-5.5.2
+exec_prefix=${prefix}
+bindir=${exec_prefix}/bin
+libdir=${exec_prefix}/lib/scilab
+includedir=${prefix}/include/scilab
+
+Name: libscilab
+Description: Scilab Library
+URL: http://www.scilab.org
+Version: 5.5.2
+Requires: libxml-2.0 libpcre
+Libs: -L${libdir} -lscilab
+Cflags: -I${includedir} -lieee -lSM -lncurses  -L/home/scilab/SuperCC/Dev-Tools/trunk/SE/Prerequirements/linux_x64/usr/lib/  -ltk8.5   -L/home/scilab/SuperCC/Dev-Tools/trunk/SE/Prerequirements/linux_x64/usr/lib/  -ltcl8.5  -ldl

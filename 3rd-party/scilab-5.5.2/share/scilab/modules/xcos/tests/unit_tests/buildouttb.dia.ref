@@ -1,2 +1,0 @@
-ierr=execstr("buildouttb()","errcatch");
-if ierr <> 77 then bugmes();quit;end

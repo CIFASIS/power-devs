@@ -1,5 +1,0 @@
-<!ELEMENT library (book)+>
-<!ELEMENT book (author,hero)>
-<!ATTLIST book title CDATA #REQUIRED>
-<!ELEMENT author (#PCDATA)>
-<!ELEMENT hero (#PCDATA)>
