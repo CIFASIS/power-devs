@@ -24,11 +24,11 @@ cd $InstallDir
 
 # Remove Windows EOF extra characters, needed by Jenkins installer.
 
-$original_file = Convert-Path '.\scripts\qss-solver-setup.sh'
+$original_file = Convert-Path '.\scripts\power-devs-setup.sh'
 $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 [IO.File]::WriteAllText($original_file, $text)
 
-$original_file = Convert-Path '.\scripts\qss-solver-config.sh'
+$original_file = Convert-Path '.\scripts\power-devs-config.sh'
 $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 [IO.File]::WriteAllText($original_file, $text)
 
@@ -37,11 +37,11 @@ $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 [IO.File]::WriteAllText($original_file, $text)
 
 Write-Host Install PowerDEVS
-bash.exe ./scripts/qss-solver-setup.sh
+bash.exe ./scripts/power-devs-setup.sh
 
-ubuntu2004.exe config --default-user qsssolver
+ubuntu2004.exe config --default-user powerdevs
 
 Write-Host Configure PowerDEVS
-bash.exe ./scripts/qss-solver-config.sh
+bash.exe ./scripts/power-devs-config.sh
 
-powershell.exe -ExecutionPolicy ByPass -File .\scripts\check-qss-solver.ps1 -Install
+powershell.exe -ExecutionPolicy ByPass -File .\scripts\check-power-devs.ps1 -Install

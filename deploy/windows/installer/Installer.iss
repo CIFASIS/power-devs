@@ -2,7 +2,7 @@
 #define appname         "PowerDEVS"
 #define installername   "PowerDEVS"
 #define appdesc         "Modeling and simulation environment for continuous and hybrid systems."
-#define mainexe         "qss-solver.bat"
+#define mainexe         "power-devs.bat"
 #define config          "config.xlaunch"
 
 ; Scripts files needed for the installer and troubleshooting
@@ -14,10 +14,11 @@
 #define migrate_settings   "migrate-settings.ps1"
 #define setup              "setup.ps1"
 #define ubuntu             "Ubuntu_2004.appx"
-#define qss_solver_setup   "qss-solver-setup.sh"
-#define qss_solver_config  "qss-solver-config.sh"
-#define check_qss_solver   "check-qss-solver.ps1"
-#define qss_solver_icon    "qss-solver-icon.ico"
+#define powerdevs_deb      "powerdevs.deb"
+#define power_devs_setup   "power-devs-setup.sh"
+#define power_devs_config  "power-devs-config.sh"
+#define check_power_devs   "check-power-devs.ps1"
+#define power_devs_icon    "pd.ico"
 #define export_vcxsrv_vars "export-vcxsrv-vars.sh"
 #define export_vcxsrv_ps   "export-vcxsrv-vars.ps1"
 #define enable_opengl      "enable-opengl.ps1"
@@ -30,7 +31,7 @@
 [Setup]
 AppName={#appname}
 AppVerName={#appname}
-AppID=QSS_Solver
+AppID=power_devs
 ; install into the current user's Program Files directory
 DefaultDirName={userpf}\{#companyname}\{#appname}
 DefaultGroupName={#companyname}\{#appname} 
@@ -49,6 +50,7 @@ PrivilegesRequired=lowest
 [Files]
 ; Installation dependencies.
 Source: {#BUILD_DIR}\{#ubuntu}; DestDir: {tmp} 
+Source: {#BUILD_DIR}\{#powerdevs_deb}; DestDir: {tmp} 
 
 ; Installation helpers.
 Source: {#BUILD_DIR}\{#test_wsl}; DestDir: {tmp}
@@ -62,9 +64,9 @@ Source: {#BUILD_DIR}\{#test_wsl}; DestDir: {app}\scripts
 Source: {#BUILD_DIR}\{#enable_opengl}; DestDir: {app}\scripts
 Source: {#BUILD_DIR}\{#disable_opengl}; DestDir: {app}\scripts
 Source: {#BUILD_DIR}\{#migrate_settings}; DestDir: {app}\scripts  
-Source: {#BUILD_DIR}\{#qss_solver_setup}; DestDir: {app}\scripts; 
-Source: {#BUILD_DIR}\{#qss_solver_config}; DestDir: {app}\scripts; 
-Source: {#BUILD_DIR}\{#check_qss_solver}; DestDir: {app}\scripts;
+Source: {#BUILD_DIR}\{#power_devs_setup}; DestDir: {app}\scripts; 
+Source: {#BUILD_DIR}\{#power_devs_config}; DestDir: {app}\scripts; 
+Source: {#BUILD_DIR}\{#check_power_devs}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#export_vcxsrv_vars}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#export_vcxsrv_ps}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#config_opengl}; DestDir: {app}\scripts;
@@ -74,13 +76,13 @@ Source: {#BUILD_DIR}\{#setup}; DestDir: {app}\scripts; AfterInstall: InstallPowe
 ; Main application binaries -- the path may change depending on your options
 source: {#BUILD_DIR}\{#mainexe}; DestDir: {app}\bin
 Source: {#BUILD_DIR}\{#config}; DestDir: {app}\bin
-Source: {#BUILD_DIR}\{#qss_solver_icon}; DestDir: {app}\bin
+Source: {#BUILD_DIR}\{#power_devs_icon}; DestDir: {app}\bin
 
 [Icons]
-Name: {group}\{#appname}; Filename: {app}\bin\{#mainexe}; WorkingDir: {app}\bin; IconFilename: "{app}\bin\qss-solver-icon.ico";
+Name: {group}\{#appname}; Filename: {app}\bin\{#mainexe}; WorkingDir: {app}\bin; IconFilename: "{app}\bin\pd.ico";
 Name: {group}\Uninstall; Filename: {uninstallexe};
-Name: {userdesktop}\{#appname}; Filename: {app}\bin\{#mainexe}; WorkingDir: {app}\bin; Tasks: "desktopicon\user"; IconFilename: "{app}\bin\qss-solver-icon.ico";
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#appname}"; Filename: {app}\bin\{#mainexe}; Tasks: quicklaunchicon; IconFilename: "{app}\bin\qss-solver-icon.ico";
+Name: {userdesktop}\{#appname}; Filename: {app}\bin\{#mainexe}; WorkingDir: {app}\bin; Tasks: "desktopicon\user"; IconFilename: "{app}\bin\pd.ico";
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#appname}"; Filename: {app}\bin\{#mainexe}; Tasks: quicklaunchicon; IconFilename: "{app}\bin\pd.ico";
 
 [Tasks]
 Name: desktopicon; Description: "Create a &desktop icon"; GroupDescription: "Additional icons:"
@@ -92,7 +94,7 @@ Filename: {app}\bin\{#mainexe}; WorkingDir: {app}\bin; Description: "Run {#appna
 
 [UninstallRun]
 Filename: "powershell.exe"; \
-  Parameters: "-ExecutionPolicy Bypass -Command ""wsl apt-get -y remove qss-solver"""; \
+  Parameters: "-ExecutionPolicy Bypass -Command ""wsl apt-get -y remove powerdevs"""; \
   WorkingDir: {app}; Flags: waituntilterminated
 
 [UninstallDelete]

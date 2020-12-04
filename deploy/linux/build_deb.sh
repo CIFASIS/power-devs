@@ -86,7 +86,6 @@ chmod 0644 `find tmp_deb/opt/powerdevs/examples/ -type f`
 chmod 0755 `find tmp_deb/ -type d`
 fakeroot chown -R root:root tmp_deb/*
 dpkg -b tmp_deb powerdevs.deb
-mv powerdevs.deb powerdevs_amd64.deb
 lintian -EvIL +pedantic -i -v powerdevs_*> build.log 
 rm -rf tmp
 rm -rf tmp_deb
