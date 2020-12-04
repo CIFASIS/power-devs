@@ -56,6 +56,8 @@ mv ./tmp_deb/opt/powerdevs/bin/original.ini ./tmp_deb/opt/powerdevs/bin/powerdev
 
 cp COPYING ./tmp_deb/opt/powerdevs
 cp -r ./tmp/build ./tmp_deb/opt/powerdevs/
+mkdir ./tmp_deb/opt/powerdevs/build/lib
+mkdir ./tmp_deb/opt/powerdevs/build/objs 
 cp -r ./tmp/engine ./tmp_deb/opt/powerdevs/
 if [ $# -eq 1 ]; then
   cat engine/Makefile.include \
