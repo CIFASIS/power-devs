@@ -15,7 +15,13 @@ qrc_*
 src/pdme_v2/obj/
 src/pdme_v2/ui/
 *.stash
+src/atomics/knob/Makefile
+src/atomics/lcd/Makefile
+src/atomics/rtview/Makefile
+src/lib/pdppt/Makefile
 src/pdae/Makefile
 src/pdif/Makefile
 src/pdme_v2/Makefile
 src/pdppt/Makefile
+bin/slider
+doc/PD_UserGuide.pdf
