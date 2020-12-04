@@ -15,7 +15,7 @@ class gnuplot: public Simulator {
 double sigma;
 int n;
 char printString[1024];
-int foutput;
+long int foutput;
 int hasOutput;
 char FName[128];
 
