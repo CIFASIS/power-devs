@@ -1,0 +1,20 @@
+# Generated binary files and scripts.
+bin/
+
+
+# Generated packages.
+deploy/linux/*.deb
+deploy/windows/*.exe
+deploy/src/*.tar.gz
+
+
+# Generated objects.
+*.o
+/src/pdme_v2/obj
+/src/pdme_v2/ui
+*.stash
+/src/pdae/Makefile
+/src/pdif/Makefile
+/src/pdme_v2/Makefile
+/src/pdppt/Makefile
+doc/

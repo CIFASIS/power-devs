@@ -1,11 +1,11 @@
 Package: powerdevs
-Version: 2.2
+Version: 3.0
 Architecture: amd64
-Maintainer: Federico Bergero <fbergero@fceia.unr.edu.ar>
+Maintainer: Joaquin Fernandez <fernandez@cifasis-conicet.gov.ar>
 Installed-Size: 15599
-Depends: gnuplot-x11 (>= 4.4), build-essential (>= 11.4), libc6 (>= 2.14), libqtcore4 (>= 4.7), libqtgui4 (>= 4.7), libqt4-svg (>= 4.7), scilab (>= 5.2), zenity, gksu, libhdf5-dev
+Depends: gnuplot-x11 (>= 4.4), build-essential (>= 11.4), libc6 (>= 2.14), qt5-default, libqt5svg5, zenity, gksu, libhdf5-dev
 Section: science
 Priority: extra
-Homepage: https://sourceforge.net/projects/powerdevs/
-Description: Tool for DEVS M&S
- PowerDEVS is a tool for DEVS modeling and simulation.
+Homepage: https://github.com/CIFASIS/power-devs
+Description: Tool for DEVS Modeling and Simulation
+ PowerDEVS is an integrated tool for hybrid systems modeling and simulation based on the DEVS formalism. 

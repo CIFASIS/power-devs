@@ -1,11 +1,8 @@
 #!/bin/bash
 ARCH=`uname -m`
-echo "Retrieving latest from SVN";
-svn up
-svnversion | tr -d '\n' >rev
-head version.major -c 6 >vm
-cat vm rev > version
-VER=`cat version`
+echo "Retrieving latest from Git";
+git pull
+VER=3.0
 echo "Building PowerDEVS DEB package for $ARCH";
 echo "Building Binaries";
 make -f Makefile clean
@@ -19,11 +16,6 @@ svn export deb tmp_deb
 chmod 0755 tmp_deb/DEBIAN/post*
 mkdir ./tmp_deb/opt/powerdevs
 svn export bin ./tmp_deb/opt/powerdevs/bin
-if [ "$ARCH" == "i686" ]; then
-  cat ./tmp_deb/DEBIAN/control.i386 | awk -v VERSION="$VER" '{ if(index($0,"Version: ")>=1) print "Version: " VERSION ; else print $0;}' >  ./tmp_deb/DEBIAN/control
-  rm ./tmp_deb/DEBIAN/control.amd64; 
-  rm ./tmp_deb/DEBIAN/control.i386; 
-fi
 if [ "$ARCH" == "x86_64" ]; then
   cat ./tmp_deb/DEBIAN/control.amd64 | awk -v VERSION="$VER" '{ if(index($0,"Version: ")>=1) print "Version: " VERSION ; else print $0;}' >  ./tmp_deb/DEBIAN/control
   rm ./tmp_deb/DEBIAN/control.amd64; 
@@ -68,12 +60,6 @@ chmod 0644 `find tmp_deb/opt/powerdevs/examples/ -type f`
 chmod 0755 `find tmp_deb/ -type d`
 fakeroot chown -R root:root tmp_deb/*
 dpkg -b tmp_deb powerdevs.deb
-if [ "$ARCH" == "i686" ]; then
-  mv powerdevs.deb powerdevs_i386_`cat rev`.deb
-fi
-if [ "$ARCH" == "x86_64" ]; then
-  mv powerdevs.deb powerdevs_amd64_`cat rev`.deb
-fi
+mv powerdevs.deb powerdevs_amd64.deb
 lintian -EvIL +pedantic -i -v powerdevs_*> build.log 
-rm rev version vm
 rm -rf tmp_deb
