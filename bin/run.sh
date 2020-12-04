@@ -20,11 +20,11 @@ else
     OW=`zenity --question --text "There is a different version of PowerDEVS on your home folder (ver. $VERHOME). Do you wish to overwrite it with ver. $VEROPT?\nNOTE: you will not lose your models."; echo $?`
     if [ $OW == 0 ];
     then 
-	    cp -a -f /opt/powerdevs/* $HOME/powerdevs
-    	rm $HOME/powerdevs/bin/BackDoor/loader.sce
-    	rm $HOME/powerdevs/build/lib/*
-    	rm $HOME/powerdevs/build/objs/*
-    	rm $HOME/powerdevs/bin/run.sh
+      cp -a -f /opt/powerdevs/* $HOME/powerdevs
+      rm $HOME/powerdevs/bin/BackDoor/loader.sce
+      rm $HOME/powerdevs/build/lib/*
+      rm $HOME/powerdevs/build/objs/*
+      rm $HOME/powerdevs/bin/run.sh
       cd $HOME/powerdevs/bin
       ./pdme
     else
