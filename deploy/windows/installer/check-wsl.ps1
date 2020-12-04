@@ -10,8 +10,8 @@ $is_wsl_enabled =  Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Win
 if ($is_wsl_enabled) {
     Write-Host WSL enabled.
     if ($Install) {
-        Write-Host Adding QSS Solver install key.
-        New-Item -Path HKCU:\Software\QSSSolver -Name WSLEnabled –Force
+        Write-Host Adding PowerDEVS install key.
+        New-Item -Path HKCU:\Software\PowerDEVS -Name WSLEnabled –Force
     }
 } else {
     Write-Host WSL is not enabled on this computer.

@@ -1,6 +1,6 @@
 #define companyname     "CIFASIS Conicet"
-#define appname         "QSS Solver"
-#define installername   "QSSSolver"
+#define appname         "PowerDEVS"
+#define installername   "PowerDEVS"
 #define appdesc         "Modeling and simulation environment for continuous and hybrid systems."
 #define mainexe         "qss-solver.bat"
 #define config          "config.xlaunch"
@@ -69,7 +69,7 @@ Source: {#BUILD_DIR}\{#export_vcxsrv_vars}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#export_vcxsrv_ps}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#config_opengl}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#config_no_opengl}; DestDir: {app}\scripts;
-Source: {#BUILD_DIR}\{#setup}; DestDir: {app}\scripts; AfterInstall: InstallQSSSolver; 
+Source: {#BUILD_DIR}\{#setup}; DestDir: {app}\scripts; AfterInstall: InstallPowerDEVS; 
 
 ; Main application binaries -- the path may change depending on your options
 source: {#BUILD_DIR}\{#mainexe}; DestDir: {app}\bin
@@ -111,10 +111,10 @@ var
 
 procedure CleanInstallationRegistryKeys;
 begin
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\QSSSolver\WSLEnabled');
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\QSSSolver\NetworkConnFailed');
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\QSSSolver\VPNConnFailed');
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\QSSSolver\QSSSolverInstallFailed');
+  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\WSLEnabled');
+  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\NetworkConnFailed');
+  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\VPNConnFailed');
+  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\PowerDEVSInstallFailed');
 end;
 
 procedure testWSL; 
@@ -132,7 +132,7 @@ begin
   Exec('powershell.exe', Params+FileName+ScriptParams, '', SW_HIDE, ewWaitUntilTerminated, ResultCode); 
 end;
 
-function QSSSolverDependencies(): Boolean;
+function PowerDEVSDependencies(): Boolean;
 var
 Dependency: Boolean;
 
@@ -145,7 +145,7 @@ begin
     Exit;
   end;
   testWSL;
-  Dependency := RegKeyExists(HKCU, 'Software\QSSSolver\WSLEnabled');
+  Dependency := RegKeyExists(HKCU, 'Software\PowerDEVS\WSLEnabled');
   if not Dependency then
   begin
     Result := False;
@@ -158,7 +158,7 @@ function InitializeSetup(): Boolean;
 var
 
 begin
-  if not QSSSolverDependencies() then
+  if not PowerDEVSDependencies() then
   begin
     MsgBox(QuitMessageError, mbError, MB_OK);
     CleanInstallationRegistryKeys;
@@ -168,13 +168,13 @@ begin
   Result := True;
 end;
 
-procedure InstallQSSSolver();
+procedure InstallPowerDEVS();
 var
 FileName: String;
 Params: String;
 ScriptParams: String;
 NetworkConnFailed: Boolean;
-QSSSolverInstallFailed: Boolean;
+PowerDEVSInstallFailed: Boolean;
 ResultCode: Integer;
 
 begin
@@ -185,20 +185,20 @@ begin
       ewWaitUntilTerminated, ResultCode) then
   begin
     CleanInstallationRegistryKeys;
-    MsgBox('QSS Solver installation failed.',mbError,MB_OK)
+    MsgBox('PowerDEVS installation failed.',mbError,MB_OK)
     CancelWithoutPrompt := true;
     WizardForm.Close;
   end;
-  NetworkConnFailed := RegKeyExists(HKCU, 'Software\QSSSolver\NetworkConnFailed');
-  QSSSolverInstallFailed := RegKeyExists(HKCU, 'Software\QSSSolver\QSSSolverInstallFailed');
+  NetworkConnFailed := RegKeyExists(HKCU, 'Software\PowerDEVS\NetworkConnFailed');
+  PowerDEVSInstallFailed := RegKeyExists(HKCU, 'Software\PowerDEVS\PowerDEVSInstallFailed');
   CleanInstallationRegistryKeys;
   if NetworkConnFailed then begin
     MsgBox('Network connection failed. Please check your connection and run the installer again',mbError,MB_OK)
     CancelWithoutPrompt := true;
     WizardForm.Close;
   end;
-  if QSSSolverInstallFailed then begin
-    MsgBox('QSS Solver installation failed. Please check your connection and run the installer again',mbError,MB_OK)
+  if PowerDEVSInstallFailed then begin
+    MsgBox('PowerDEVS installation failed. Please check your connection and run the installer again',mbError,MB_OK)
     CancelWithoutPrompt := true;
     WizardForm.Close;
   end;  

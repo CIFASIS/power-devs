@@ -1,7 +1,7 @@
 #define companyname     "CIFASIS Conicet"
-#define appname         "QSS Solver Setup"
-#define installername   "QSSSolverSetup"
-#define appdesc         "QSS Solver initial setup, enable WSL for Windows 10 machines and install VcXsrv"
+#define appname         "PowerDEVS Setup"
+#define installername   "PowerDEVSSetup"
+#define appdesc         "PowerDEVS initial setup, enable WSL for Windows 10 machines and install VcXsrv"
 
 ; Scripts files needed for the installer and troubleshooting
 #define enable_wsl         "enable-wsl.ps1"
@@ -34,7 +34,7 @@ Source: {#BUILD_DIR}\{#vcxsrv}; DestDir: {tmp}; AfterInstall: InstallVcXsrv;
 
 [Code]
 const                                                             
-  QuitMessageError = 'Error. QSS Solver required dependency failed to install.';
+  QuitMessageError = 'Error. PowerDEVS required dependency failed to install.';
   WarningMessage = 'WSL installation requires to restart the computer, please close all running applications before continuing.'; 
 
 var 
@@ -42,8 +42,8 @@ var
 
 procedure CleanInstallationRegistryKeys;
 begin
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\QSSSolver\WSLEnabled');
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\QSSSolver\WSLRestartNeeded');
+  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\WSLEnabled');
+  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\WSLRestartNeeded');
 end;
 
 procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
@@ -71,7 +71,7 @@ begin
     CleanInstallationRegistryKeys;
     Exit;
   end;
-  WSLEnabled := RegKeyExists(HKCU, 'Software\QSSSolver\WSLEnabled');
+  WSLEnabled := RegKeyExists(HKCU, 'Software\PowerDEVS\WSLEnabled');
   if (not WSLEnabled) then
   begin
     if MsgBox(WarningMessage, mbConfirmation, MB_YESNO or MB_DEFBUTTON2) = IDNO then
@@ -94,7 +94,7 @@ var
     
 begin
   ExtractTemporaryFile('{#enable_wsl}');
-  WSLEnabled := RegKeyExists(HKCU, 'Software\QSSSolver\WSLEnabled');
+  WSLEnabled := RegKeyExists(HKCU, 'Software\PowerDEVS\WSLEnabled');
   if (not WSLEnabled) then
   begin
     FileName := '"' + ExpandConstant('{tmp}\{#enable_wsl}') + '"';
@@ -107,7 +107,7 @@ begin
       CleanInstallationRegistryKeys;
       Exit;
     end;
-    WSLEnabled := RegKeyExists(HKCU, 'Software\QSSSolver\WSLRestartNeeded');
+    WSLEnabled := RegKeyExists(HKCU, 'Software\PowerDEVS\WSLRestartNeeded');
     if (not WSLEnabled) then
     begin
       MsgBox(QuitMessageError, mbConfirmation, MB_YESNO or MB_DEFBUTTON2);
@@ -147,7 +147,7 @@ var
 WSLRestartNeeded: Boolean;
   
 begin
-  WSLRestartNeeded := RegKeyExists(HKCU, 'Software\QSSSolver\WSLRestartNeeded');
+  WSLRestartNeeded := RegKeyExists(HKCU, 'Software\PowerDEVS\WSLRestartNeeded');
   CleanInstallationRegistryKeys;
   Result := WSLRestartNeeded;
 end;

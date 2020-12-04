@@ -2,7 +2,7 @@ echo "Adding X server display environment variables"
 echo 'export DISPLAY=:0.0' >> ~/.bashrc
 echo 'export LIBGL_ALWAYS_INDIRECT=1' >> ~/.bashrc
 
-echo "Linking QSS Solver user folder"
+echo "Linking PowerDEVS user folder"
 
 cmd.exe /c "echo %USERNAME%" > user.txt
 WINDOWS_USER=`tr -d '\r' < user.txt`
@@ -13,7 +13,7 @@ echo "Found Windows user: " $WINDOWS_USER
 LINUX_QSS_SOLVER=~/qss-solver
 LINUX_QSS_SOLVER_TMP=${LINUX_QSS_SOLVER}-tmp
 WINDOWS_USER_FOLDER=/mnt/c/Users/${WINDOWS_USER}
-WINDOWS_QSS_SOLVER=${WINDOWS_USER_FOLDER}/QSSSolver
+WINDOWS_QSS_SOLVER=${WINDOWS_USER_FOLDER}/PowerDEVS
 
 echo Temp folders:
 echo $LINUX_QSS_SOLVER

@@ -4,14 +4,14 @@ param (
      )
 
 
-Write-Host QSS Solver initial setup...
+Write-Host PowerDEVS initial setup...
 Write-Host $TmpDir
 cd $TmpDir
 
 # Check initial configuration for required dependencies.
 $ubuntu_installed = Get-AppxPackage -Name  CanonicalGroupLimited.Ubuntu20.04onWindows
 if ($ubuntu_installed.Status -eq "Ok") {
-    Write-Host Ubuntu 20.04 for Windows already installed, continue QSS Solver setup.
+    Write-Host Ubuntu 20.04 for Windows already installed, continue PowerDEVS setup.
 } else {
     Write-Host Preparing Ubuntu 20.04 package...
     Add-AppxPackage .\Ubuntu_2004.appx
@@ -36,12 +36,12 @@ $original_file = Convert-Path '.\scripts\export-vcxsrv-vars.sh'
 $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 [IO.File]::WriteAllText($original_file, $text)
 
-Write-Host Install QSS Solver
+Write-Host Install PowerDEVS
 bash.exe ./scripts/qss-solver-setup.sh
 
 ubuntu2004.exe config --default-user qsssolver
 
-Write-Host Configure QSS Solver
+Write-Host Configure PowerDEVS
 bash.exe ./scripts/qss-solver-config.sh
 
 powershell.exe -ExecutionPolicy ByPass -File .\scripts\check-qss-solver.ps1 -Install
