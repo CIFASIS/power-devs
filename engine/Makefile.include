@@ -1,24 +1,4 @@
 UNAME = $(shell uname)
-ifeq ($(UNAME), Windows)
-OPTFLAGS = -O3
-CXXFLAGS = -Wall $(OPTFLAGS) -D__WINDOWS__
-ATOMICS = ..\atomics
-SRCENGINE = ..\engine
-BUILD = ..\build
-BUILDOBJ = ..\build\objs
-BUILDLIB = ..\build\lib
-OUTPUT = ..\output
-MODEL = $(OUTPUT)\model.exe
-RM = del
-MV = copy 
-OBJS = $(BUILDOBJ)\*.o
-LIBS = -lsimpd -lws2_32 -lhdf5_serial
-INCLUDES = -I$(SRCENGINE) -I$(ATOMICS) -I$(BUILD) -L$(BUILDLIB) 
-all : $(BUILDLIB)/libsimpd.a $(MODEL)
-clean:
-	$(RM) /q /s  $(OBJS) $(MODEL)
-endif
-ifeq ($(UNAME), Linux)
 OPTFLAGS = -march=native -O3
 CXXFLAGS =  -Wall $(OPTFLAGS)
 ATOMICS = ../atomics
@@ -49,7 +29,6 @@ install: $(BUILDLIB)/libsimpd.a
 	install -m 644 -p ../engine/types.h $(SIMPD)
 	install -m 644 -p ../engine/event.h $(SIMPD)
 	install -m 644 -p ../engine/pdevslib.h $(SIMPD)
-endif
 
 $(BUILDOBJ)/connection.o: $(SRCENGINE)/connection.cpp $(SRCENGINE)/connection.h
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRCENGINE)/connection.cpp -o $(BUILDOBJ)/connection.o
