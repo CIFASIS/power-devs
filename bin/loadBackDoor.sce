@@ -6,9 +6,10 @@ if atomsIsInstalled("BackDoor")==%F then
     end 
 	disp("Installing BackDoor module");
 	atomsInstall("BackDoor");
-	movefile(SCIHOME+"/atoms/BackDoor/0.2/etc/BackDoor.quit",SCIHOME+"/atoms/BackDoor/0.2/etc/BackDoor.quit.bk")
-	copyfile(SCIHOME+"/atoms/BackDoor/0.2/etc/BackDoor.quit.bk",SCIHOME+"/atoms/BackDoor/0.2/etc/backdoor.quit")
-	movefile(SCIHOME+"/atoms/BackDoor/0.2/etc/BackDoor.start",SCIHOME+"/atoms/BackDoor/0.2/etc/BackDoor.start.bk")
-	copyfile(SCIHOME+"/atoms/BackDoor/0.2/etc/BackDoor.start.bk",SCIHOME+"/atoms/BackDoor/0.2/etc/backdoor.start")
+	PDEVS_SCILAB_HOME="/opt/powerdevs/3rd-party/scilab-5.5.2/share/scilab/contrib/BackDoor/0.2/etc/"
+	movefile(PDEVS_SCILAB_HOME+"BackDoor.quit",PDEVS_SCILAB_HOME+"BackDoor.quit.bk")
+	copyfile(PDEVS_SCILAB_HOME+"BackDoor.quit.bk",PDEVS_SCILAB_HOME+"backdoor.quit")
+	movefile(PDEVS_SCILAB_HOME+"BackDoor.start",PDEVS_SCILAB_HOME+"BackDoor.start.bk")
+	copyfile(PDEVS_SCILAB_HOME+"BackDoor.start.bk",PDEVS_SCILAB_HOME+"backdoor.start")
 end 
 atomsLoad("BackDoor");
