@@ -55,18 +55,18 @@ chmod 0755 `find tmp_deb/opt/powerdevs/bin`
 mv ./tmp_deb/opt/powerdevs/bin/original.ini ./tmp_deb/opt/powerdevs/bin/powerdevs.ini
 
 cp COPYING ./tmp_deb/opt/powerdevs
-cp -r ./tmp/build ./tmp_deb/opt/powerdevs/build
-cp -r ./tmp/engine ./tmp_deb/opt/powerdevs/engine
+cp -r ./tmp/build ./tmp_deb/opt/powerdevs/
+cp -r ./tmp/engine ./tmp_deb/opt/powerdevs/
 if [ $# -eq 1 ]; then
   cat engine/Makefile.include \
    | awk '{if (match($0,'/^CXX/')) print $0, " -DRTAIOS"; else print $0}' \
    | awk '{if (match($0,'/^LIBS/')) print $0, " -L/usr/realtime/lib -lpthread -llxrt -lm "; else print $0}' \
    | awk '{if (match($0,'/^INCLUDE/')) print $0, "-I/usr/realtime/include"; else print $0}' > tmp_deb/opt/powerdevs/engine/Makefile.include 
 fi
-cp -r ./tmp/library ./tmp_deb/opt/powerdevs/library
-cp -r ./tmp/examples ./tmp_deb/opt/powerdevs/examples
-cp -r ./tmp/atomics ./tmp_deb/opt/powerdevs/atomics
-cp -r ./tmp/doc ./tmp_deb/opt/powerdevs/doc
+cp -r ./tmp/library ./tmp_deb/opt/powerdevs/
+cp -r ./tmp/examples ./tmp_deb/opt/powerdevs/
+cp -r ./tmp/atomics ./tmp_deb/opt/powerdevs/
+cp -r ./tmp/doc ./tmp_deb/opt/powerdevs/
 #Extra binaries
 #cp -r ./tmp/output ./tmp_deb/opt/powerdevs/output
 chmod 0644 `find tmp_deb/ -iname *.cpp`
