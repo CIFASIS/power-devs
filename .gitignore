@@ -25,3 +25,5 @@ src/pdme_v2/Makefile
 src/pdppt/Makefile
 bin/slider
 doc/PD_UserGuide.pdf
+build.log
+powerdevs_amd64.deb
