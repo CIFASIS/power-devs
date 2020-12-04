@@ -1,5 +1,4 @@
-PowerDEVS
----------
+## PowerDEVS
 
 PowerDEVS is a general-purpose software tool for discrete event system 
 specification (DEVS) modeling and simulation oriented to the simulation of 
@@ -21,38 +20,35 @@ processing and data analysis. In addition to describing the main features
 of the software tool, the article also illustrates its use with some examples 
 which show its simplicity and efficiency.
 
-Installation
-------------
+## Installation
 
 These are generic installation instructions.
 
-Dependences
------------
+## Dependences
 
 In order to be able to install and compile ModelicaCC, 
 the following  dependencies must be installed: 
 
-    * make
-    * qt5-default
-    * g++ 
-    * libqt5svg5-dev
+   * make
+   * qt5-default
+   * g++ 
+   * libqt5svg5-dev
 
 In order to build the documentation:
 
-    * texlive-latex-base
-    * texlive-latex-extra
+   * texlive-latex-base
+   * texlive-latex-extra
 
-Basic Installation
-------------------
+## Basic Installation
 
 The simplest way to compile this package is:
 
-  1. `cd' to the directory containing the package's source code and type
-     `autoconf' to generate the configuration scripts.
+  1. `cd` to the directory containing the package's source code and type
+     `autoconf` to generate the configuration scripts.
     
-  3. Type `make' to compile all the binaries. The different tools are located 
+  3. Type `make` to compile all the binaries. The different tools are located 
      in the bin folder. 
 
   4. You can remove the program binaries and object files from the
-     source code directory by typing `make clean'.  
+     source code directory by typing `make clean`.  
 
