@@ -3,7 +3,7 @@ Version: 3.0
 Architecture: amd64
 Maintainer: Joaquin Fernandez <fernandez@cifasis-conicet.gov.ar>
 Installed-Size: 15599
-Depends: gnuplot-x11 (>= 4.4), build-essential (>= 11.4), libc6 (>= 2.14), qt5-default, libqt5svg5, zenity, gksu, libhdf5-dev
+Depends: gnuplot-x11 (>= 4.4), build-essential (>= 11.4), libc6 (>= 2.14), qt5-default, libqt5svg5, zenity, libhdf5-dev
 Section: science
 Priority: extra
 Homepage: https://github.com/CIFASIS/power-devs

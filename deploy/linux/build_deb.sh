@@ -24,6 +24,8 @@ mkdir ./tmp_deb/opt/powerdevs/library
 mkdir ./tmp_deb/opt/powerdevs/examples
 mkdir ./tmp_deb/opt/powerdevs/atomics
 mkdir ./tmp_deb/opt/powerdevs/doc
+mkdir ./tmp_deb/opt/powerdevs/output
+mkdir ./tmp_deb/opt/powerdevs/output/plots
 
 echo "Installing Scilab"
 cd ./tmp_deb/opt/powerdevs/3rd-party
@@ -66,7 +68,7 @@ cp -r ./tmp/examples ./tmp_deb/opt/powerdevs/examples
 cp -r ./tmp/atomics ./tmp_deb/opt/powerdevs/atomics
 cp -r ./tmp/doc ./tmp_deb/opt/powerdevs/doc
 #Extra binaries
-cp -r ./tmp/output ./tmp_deb/opt/powerdevs/output
+#cp -r ./tmp/output ./tmp_deb/opt/powerdevs/output
 chmod 0644 `find tmp_deb/ -iname *.cpp`
 chmod 0644 `find tmp_deb/ -iname *.c`
 chmod 0644 `find tmp_deb/ -iname *.sce`
