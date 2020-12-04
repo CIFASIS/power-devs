@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>saxon.README</title>
+</head>
+<body>
+<font face="Arial, Helvetica, sans-serif"><a name="Scope">
+<h2>What is SAXON?</h2>
+</a>
+<p>The SAXON package is a collection of tools for processing XML
+documents. The main components
+of Saxon 6.5.x are: </p>
+<ul>
+  <li>An XSLT processor, which implements the Version 1.0 XSLT and
+XPath Recommendations from the World Wide Web Consortium, found at <a
+ href="http://www.w3.org/TR/1999/REC-xslt-19991116">
+http://www.w3.org/TR/1999/REC-xslt-19991116</a> and <a
+ href="http://www.w3.org/TR/1999/REC-xpath-19991116">
+http://www.w3.org/TR/1999/REC-xpath-19991116</a>
+with a number of powerful extensions. This version of Saxon also
+includes
+many of the new features that were first defined in the XSLT 1.1
+working draft, but for conformance
+and portability reasons these are not available if the stylesheet
+header specifies
+    <code>version="1.0"</code>.</li>
+  <li>A Java library, which supports a similar processing model to XSL,
+but allows full programming capability, which you need if you want to
+perform complex processing of the data or to access external services
+such as a relational database</li>
+  <li>A slightly improved version of the &AElig;lfred parser originally
+written by David Megginson,
+then of Microstar. (But you can use SAXON with any SAX-compliant XML
+parser if you prefer).</li>
+</ul>
+<p>So you can use SAXON by writing XSLT stylesheets, by writing Java
+applications, or by any combination of the two.</p>
+<p>SAXON is particularly useful when converting XML data into
+other formats. The output format may be XML, or HTML, or some other
+format such as comma separated
+values, EDI messages, or data in a relational database.</p>
+<p>SAXON implements the XSLT 1.0 recommendation, including XPath 1.0,
+in its entirety.
+SAXON also provides some XSLT 1.1 features, in particular:</p>
+<ul>
+  <li>Support for multiple output files using xsl:document. (Saxon was
+the first processor to provide this feature, which has now found its
+way into the latest W3C working draft. The xsl:document element
+replaces the saxon:output instruction offered in previous releases. The
+implementation of xsl:document at this time is not 100% compliant with
+the draft XSLT 1.1 specifications). </li>
+  <li>It allows multi-pass processing, by allowing
+result-tree-fragments to be used in any context where a node-set can be
+used. (The saxon:node-set() extension function is still available, but
+it is now superfluous.)</li>
+  <li>It supports XML Base, a facility which allows the base URI of an
+element to be defined using an xml:base attribute.</li>
+</ul>
+<p>Note that the XSLT 1.1 working draft was subsequently abandoned.
+Most of the new
+functionality (with the exception of Java and Javascript language
+bindings) reappeared in the
+XSLT 2.0 drafts, but in some cases with different syntax.</p>
+<p>In addition, Saxon provides an extensive library of <a
+ href="http://saxon.sourceforge.net/saxon6.5.4/extensions.html">extension
+elements and extension functions</a>, all implemented in conformance
+with the XSLT 1.0 standard to ensure that portable stylesheets can be
+written. These include the <a href="http://www.exslt.org/">EXSLT</a>
+extension libraries <b>common</b>, <b>sets</b>, <b>math</b>, <b>dates-and-times</b>,
+and <b>functions</b>.
+Many of these extensions were pioneered in Saxon and have since become
+available
+in other products.</p>
+<p>Saxon also includes a number of powerful extension functions that
+go beyond EXSLT. Most of these rely on the concept of "stored
+expressions"
+as an additional data-type: this allows an XPath expression to be
+constructed
+at run-time from a string, and allows an expression to be passed as an
+argument
+to a function (which in effect provides higher-order functions). This
+allows:</p>
+<ul>
+  <li>distinct() to provide grouping capability on any calculated value</li>
+  <li>sum(), min() and max(), of any calculated value</li>
+  <li>expression() and evaluate() to allow an XPath expression to be
+constructed dynamically, passed to the stylesheet as a parameter, or
+read from the source document.</li>
+</ul>
+<p>As a Java class library, SAXON gives you the ability to use the XSLT
+rule-based approach to
+document processing, but with the flexibility of the full Java
+language. You can declare
+handler classes to match particular patterns in the document, and can
+process arbitrary
+sets of nodes selected using XPath expressions. This provides a
+high-level query capability which
+you can mix with purely navigational access.</p>
+</font><br>
+<h2><font face="Arial, Helvetica, sans-serif">Changes in version 6.5.4
+(2005-06-22)</font></h2>
+<p><font face="Arial, Helvetica, sans-serif">The <code>TransformerFactoryImpl</code>
+(Saxon's implementation of the JAXP <code>TransformerFactory</code>
+class) now supports the method <code>setFeature</code>
+introduced in JAXP 1.3. However, the "secure processing" feature which
+the specification
+says all implementations must provide is not supported.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">The <code>Controller</code>
+(Saxon's implementation of the JAXP <code>Transformer</code>
+class) now implements the <code>reset()</code> method introduced in
+JAXP 1.3. Note that the
+<code>reset()</code> method does not clear the document pool (the
+collection of documents loaded
+using the <code>document()</code> function. This is because the
+purpose of resetting a Transformer
+rather than creating a new one is in order to reuse resources.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">The Saxon tree models
+implement DOM interfaces. This support has been upgraded so that
+all DOM level 3 methods are present, as required in order to compile
+the code under JDK 1.5.
+In many cases, the new methods are trivial implementations, that is,
+they typically return null
+or throw an <code>UnsupportedOperationException</code> if called.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">In the <code>NodeInfo</code>
+interface, the method <code>isSameNode()</code> has been
+renamed <code>isSameNodeInfo()</code> to avoid conflict with the DOM
+Level 3 interface of the
+same name.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">To allow compilation under
+JDK 1.5, variables named "enum" have been renamed.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">The algorithm for
+generating IDs for attribute and namespace nodes has been changed
+in both the tiny tree and the standard tree. The
+previous algorithm did not guarantee that the IDs consisted of ASCII
+alphanumeric characters, as
+required by the XSLT 1.0 specification.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">In version 6.5.3 the
+following bug was present, and has now been fixed:
+<i>When comparing two nodes for identity (e.g. when evaluating the
+union operator |), an element, text, comment or PI node may be
+considered identical to an attribute or namespace node if they happen
+to be at the same offset in their respective data structures. This
+problem applied to the TinyTree only.</i></font></p>
+<p><font face="Arial, Helvetica, sans-serif">A performance bug in the
+implementation of result tree fragments has been fixed. The code
+in <code>FragmentValue.java</code> used the construct <code>new
+Vector(20, 20)</code> to allocate
+space for nodes on the tree; the effect of this is that a fixed
+allocation unit of 20 items is used, meaning
+that the cost of constructing the tree increases as the square of the
+number of nodes.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">Several bugs in <code>xsl:number</code>
+have been fixed:</font></p>
+<ul>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">The implementation now
+correctly handles a format
+pattern that contains no formatting tokens, for example <code>format="*"</code>
+(the resulting output
+takes the form <code>*12*</code>). {test numb26}</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">The first
+non-alphanumeric token in the format picture is no longer treated as a
+separator
+token, so if multiple numbers are output using a format picture of <code>(1)</code>,
+the output is now
+    <code>(1.2.3)</code> rather than <code>(1(2(3)</code>. {test
+numb35}</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon now returns the
+correct results for <code>&lt;xsl:number level="any"&gt;</code> when
+the context node is an attribute that does not match the count pattern,
+and when its parent is an element that does match the count pattern.
+{test numb32}</font></p>
+  </li>
+</ul>
+<p><font face="Arial, Helvetica, sans-serif">An error is now reported
+if there are two templates in different stylesheet modules with the
+same name and the same import precedence, provided (a) that there is no
+template with that name
+and higher import precedence, and (b) that the template is actually
+referenced in an <code>xsl:call-template</code>
+instruction. {test error052}</font></p>
+<p><font face="Arial, Helvetica, sans-serif">An error is now reported
+if a namespace prefix used in the <code>exclude-result-prefixes</code>
+attribute
+of the <code>xsl:stylesheet</code> element of an imported or included
+stylesheet module has not been declared,
+unless the module is in forwards-compatible mode (for example, because
+it specifies <code>version="2.0"</code>.
+{test error235}</font></p>
+<p><font face="Arial, Helvetica, sans-serif">Within <code>xsl:for-each</code>,
+any <code>xsl:sort</code> elements must now precede any other
+instructions.
+{test error172}</font></p>
+<p><font face="Arial, Helvetica, sans-serif">Some previously unreported
+errors have been found as a result of running Saxon 6.5.4 against the
+test suite
+for Saxon 8.5. The following bugs have been fixed:</font></p>
+<ul>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.3 did not
+fail cleanly when there are too many nested <code>xsl:apply-templates</code>
+calls.
+{test error051}</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.3 threw a
+NullPointerException if an <code>xsl:stylesheet</code> or <code>xsl:transform</code>
+element appeared as a child of another element in the stylesheet. {test
+error236}</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.3 failed
+when processing a literal result element appearing within an <code>xsl:fallback</code>
+instruction.
+{test ver23}</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.3 produced
+an ArrayIndexOutOfBoundsException when serializing an element that (a)
+is included in the <code>cdata-section-elements</code> attribute of <code>xsl:output</code>,
+and (b)
+contains a Unicode character above 65535 (a "supplementary character").
+{test output176}</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.3 threw an
+ArrayIndexOutOfBounds exception when calling an extension function if
+the
+target class contained both a matching static method with N arguments
+and a matching non-static method
+with N-1 arguments.</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.3, when
+operating in forwards compatibility mode, does not ignore all 1.0
+errors (for example,
+XSLT 2.0 features) appearing within the children of an unrecognized
+top-level element such as the XSLT 2.0
+    <code>xsl:function</code> element.</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.3, when
+operating in forwards compatibility mode, does not always treat an
+optional
+attribute with an unrecognized value as if the attribute were not
+specified. This is a difficult problem to fix
+across the board, but it has been fixed for some particular cases that
+arise when Saxon 6.5.4 is presented
+with an XSLT 2.0 stylesheet, for example if the <code>mode</code>
+attribute of <code>xsl:template</code>
+or <code>xsl:apply-templates</code> is not a valid QName then the
+attribute is ignored {test cnfr18}. A match pattern
+that XSLT 1.0 does not allow is now treated (when in forwards
+compatibility mode) as a pattern that no
+nodes will match {test ver24} (this is not an explicit rule in the XSLT
+1.0 specification, but seems to be the best thing
+to do given the intent behind forwards compatibility mode.)</font></p>
+  </li>
+  <li>
+    <p><font face="Arial, Helvetica, sans-serif">In Saxon 6.5.3, the
+JDOM adapter (when used with the JDOM 1.0 release) did not correctly
+handle the namespace axis, nor the DocType node in a JDOM tree. It also
+did not allow access to attributes
+in the XML namespace (such as xml:space)</font></p>
+  </li>
+</ul>
+<p><font face="Arial, Helvetica, sans-serif">Support for FOP has been
+dropped.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">Saxon 6.5.4 is no longer
+supported under JDK 1.1. In consequence, Instant Saxon, which relied on
+the Microsoft
+JVM, is no longer available.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">The applet support module
+XSLTProcessorApplet, and the sample HTML pages illustrating use of
+Saxon as an applet,
+have been dropped.</font></p>
+</body>
+</html>

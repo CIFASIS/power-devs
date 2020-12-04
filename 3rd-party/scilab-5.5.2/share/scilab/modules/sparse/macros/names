@@ -1,0 +1,15 @@
+%bicg
+%bicgstab
+%cgs
+%pcg
+adj2sp
+chfact
+chsolve
+conjgrad
+gmres
+issparse
+qmr
+sp2adj
+speye
+sprand
+spzeros

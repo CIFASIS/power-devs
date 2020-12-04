@@ -1,0 +1,13 @@
+analyze
+auread
+auwrite
+lin2mu
+loadwave
+mapsound
+mu2lin
+playsnd
+savewave
+sound
+soundsec
+wavread
+wavwrite

@@ -1,0 +1,9 @@
+block_parameter_error
+find_scicos_version
+fixedpointgcd
+get_scicos_version
+initial_scicos_tables
+returntoscilab
+scicos_getvalue
+scicos_workspace_init
+with_modelica_compiler
