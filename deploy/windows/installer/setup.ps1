@@ -20,6 +20,8 @@ if ($ubuntu_installed.Status -eq "Ok") {
     ubuntu2004 install --root
 }
 
+cp .\powerdevs.deb $InstallDir\scripts\
+
 cd $InstallDir
 
 # Remove Windows EOF extra characters, needed by Jenkins installer.
@@ -43,5 +45,3 @@ ubuntu2004.exe config --default-user powerdevs
 
 Write-Host Configure PowerDEVS
 bash.exe ./scripts/power-devs-config.sh
-
-powershell.exe -ExecutionPolicy ByPass -File .\scripts\check-power-devs.ps1 -Install
