@@ -13,7 +13,7 @@
 [Setup]
 AppName={#appname}
 AppVerName={#appname}
-AppID=QSS_solver
+AppID=PowerDEVS
 DefaultDirName={userpf}\{#companyname}\{#appname}
 DefaultGroupName={#companyname}\{#appname} 
 ShowLanguageDialog=auto
