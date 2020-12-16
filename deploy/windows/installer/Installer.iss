@@ -11,13 +11,11 @@
 #define test_wsl           "test-wsl.ps1"
 #define check_vcxsrv       "check-vcxsrv.ps1"
 #define test_vcxsrv        "test-vcxsrv.ps1"
-#define migrate_settings   "migrate-settings.ps1"
 #define setup              "setup.ps1"
 #define ubuntu             "Ubuntu_2004.appx"
 #define powerdevs_deb      "powerdevs.deb"
 #define power_devs_setup   "power-devs-setup.sh"
 #define power_devs_config  "power-devs-config.sh"
-#define check_power_devs   "check-power-devs.ps1"
 #define power_devs_icon    "pd.ico"
 #define export_vcxsrv_vars "export-vcxsrv-vars.sh"
 #define export_vcxsrv_ps   "export-vcxsrv-vars.ps1"
@@ -63,10 +61,8 @@ Source: {#BUILD_DIR}\{#test_vcxsrv}; DestDir: {app}\scripts
 Source: {#BUILD_DIR}\{#test_wsl}; DestDir: {app}\scripts
 Source: {#BUILD_DIR}\{#enable_opengl}; DestDir: {app}\scripts
 Source: {#BUILD_DIR}\{#disable_opengl}; DestDir: {app}\scripts
-Source: {#BUILD_DIR}\{#migrate_settings}; DestDir: {app}\scripts  
 Source: {#BUILD_DIR}\{#power_devs_setup}; DestDir: {app}\scripts; 
 Source: {#BUILD_DIR}\{#power_devs_config}; DestDir: {app}\scripts; 
-Source: {#BUILD_DIR}\{#check_power_devs}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#export_vcxsrv_vars}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#export_vcxsrv_ps}; DestDir: {app}\scripts;
 Source: {#BUILD_DIR}\{#config_opengl}; DestDir: {app}\scripts;
@@ -114,9 +110,6 @@ var
 procedure CleanInstallationRegistryKeys;
 begin
   RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\WSLEnabled');
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\NetworkConnFailed');
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\VPNConnFailed');
-  RegDeleteKeyIncludingSubKeys(HKCU, 'Software\PowerDEVS\PowerDEVSInstallFailed');
 end;
 
 procedure testWSL; 
@@ -157,8 +150,6 @@ begin
 end;
 
 function InitializeSetup(): Boolean;
-var
-
 begin
   if not PowerDEVSDependencies() then
   begin
@@ -175,8 +166,6 @@ var
 FileName: String;
 Params: String;
 ScriptParams: String;
-NetworkConnFailed: Boolean;
-PowerDEVSInstallFailed: Boolean;
 ResultCode: Integer;
 
 begin
@@ -191,19 +180,7 @@ begin
     CancelWithoutPrompt := true;
     WizardForm.Close;
   end;
-  NetworkConnFailed := RegKeyExists(HKCU, 'Software\PowerDEVS\NetworkConnFailed');
-  PowerDEVSInstallFailed := RegKeyExists(HKCU, 'Software\PowerDEVS\PowerDEVSInstallFailed');
   CleanInstallationRegistryKeys;
-  if NetworkConnFailed then begin
-    MsgBox('Network connection failed. Please check your connection and run the installer again',mbError,MB_OK)
-    CancelWithoutPrompt := true;
-    WizardForm.Close;
-  end;
-  if PowerDEVSInstallFailed then begin
-    MsgBox('PowerDEVS installation failed. Please check your connection and run the installer again',mbError,MB_OK)
-    CancelWithoutPrompt := true;
-    WizardForm.Close;
-  end;  
 end;
 
 procedure CancelButtonClick(CurPageID: Integer; var Cancel, Confirm: Boolean);
