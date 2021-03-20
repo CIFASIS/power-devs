@@ -15,7 +15,7 @@
 
 class toscilab_offline: public Simulator { 
 double Sigma;
-int FOutput;
+long int FOutput;
 char *time_var;
 char *signal_var;
 unsigned count;
